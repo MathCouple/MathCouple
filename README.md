@@ -1,7 +1,7 @@
 ### Hi, you can call me Matt! I'm currently aspiring to be a software engineer 👋
 
 - 🔭 I’m currently working on Data Analytics & Process Engineering
-- 🌱 I’m currently learning Database Foudantions & AWS Foudantions
+- 🌱 I’m currently learning Database & AWS Foundations
 - 💬 Ask me about Algorithms and Discrete Math
 - ⚡ Fun fact: 73 is the 21th prime number - which is the product of 7*3, and 37, its inverted number, is the 22th prime number. However, 42 is the answer for *. 
 <div align="center">
