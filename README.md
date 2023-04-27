@@ -1,13 +1,5 @@
-### Hi, you can call me Matt! I'm currently aspiring to be a software engineer 👋
+### Hi, I have everything, but I'm making some changes here. Be free to come back later👋
 
-- 🔭 I’m currently working on Data Analytics & Process Engineering
-- 🌱 I’m currently learning Database & AWS Foundations
-- 💬 Ask me about Algorithms and Discrete Math
-- ⚡ Fun fact: 73 is the 21th prime number - which is the product of 7*3; and 37, its inverted number, is the 22th prime number. However, 42 is the answer for *. 
-<div align="center">
-  <a href="https://github.com/MathCouple">
-  <img height="150em" src="https://github-readme-stats.vercel.app/api?username=MathCouple&show_icons=true&theme=darkclude_all_commits=true&count_private=true"/>
-  <img height="150em" src="https://github-readme-stats.vercel.app/api/top-langs/?username=MathCouple&layout=compact&langs_count=7&theme=dark"/>
 </div>
 
 <div align="center">
