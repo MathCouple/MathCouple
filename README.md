@@ -7,5 +7,5 @@
   <img align="right" alt="Matt-pic" height="30" style="border-radius:50px;" src="https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white">
 </div>
 
-[![Harlok's wakatime stats](https://github-readme-stats.vercel.app/api/wakatime?username=attam)](https://github.com/MathCouple/github-readme-stats)
-
+| [![Harlok's wakatime stats](https://github-readme-stats.vercel.app/api/wakatime?username=attam)](https://github.com/MathCouple/github-readme-stats) | <img alt="Matt-pic" height="30" style="border-radius:50px;" src="https://img.shields.io/badge/Arch_Linux-1793D1?style=for-the-badge&logo=arch-linux&logoColor=white"> <img alt="Matt-pic" height="30" style="border-radius:50px;" src="https://img.shields.io/badge/Amazon_AWS-FF9900?style=for-the-badge&logo=amazonaws&logoColor=white"> <img alt="Matt-pic" height="30" style="border-radius:50px;" src="https://img.shields.io/badge/Linux-FCC624?style=for-the-badge&logo=linux&logoColor=black"> <img alt="Matt-pic" height="30" style="border-radius:50px;" src="https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white"> |
+|:---|---:|
