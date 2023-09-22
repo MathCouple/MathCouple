@@ -4,6 +4,6 @@
 
   <h3><p align="center">Total de visitas no perfil:</p>
 <p align="center">
-    <img alingn="center" src="https://profile-counter.glitch.me/SamuelFLM/count.svg"/>
+    <img alingn="center" src="https://profile-counter.glitch.me/MathCouple/count.svg"/>
 </p>
 
