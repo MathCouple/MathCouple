@@ -6,6 +6,6 @@
   <img align="right" alt="Matt-pic" height="30" style="border-radius:50px;" src="https://img.shields.io/badge/Linux-FCC624?style=for-the-badge&logo=linux&logoColor=black">
   <img align="right" alt="Matt-pic" height="30" style="border-radius:50px;" src="https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white">
   <a href="https://github.com/anuraghazra/convoychat">
-    <img height=200 align="center" src="https://github-readme-stats.vercel.app/api/top-langs?username=attam&layout=compact&langs_count=8&card_width=320" />
+    <img height=200 align="center" src="https://github-readme-stats.vercel.app/api/top-langs?username=MathCouplem&layout=compact&langs_count=8&card_width=320" />
   </a>
 </div>
