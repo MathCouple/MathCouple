@@ -1,3 +1,3 @@
-### Hi, I have everything, but I'm making some changes here. Feel free to come back later👋 For now, you can check my wakatime style:
+### Hi, I have everything, but I'm making some changes here. Feel free to come back later👋 For now, you can check my wakatime style https://wakatime.com/@attam:
 
 [![Harlok's wakatime stats](https://github-readme-stats.vercel.app/api/wakatime?username=attam)]([https://github.com/anuraghazra/github-readme-stats](https://wakatime.com/@attam)https://wakatime.com/@attam)
