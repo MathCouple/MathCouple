@@ -1,8 +1,12 @@
-Greetings,
+Hi!
 
-I serve as a Professional Data Engineer and, in addition, engage as a Software Engineer Consultant in my discretionary time. Currently, my endeavors are focused on amplifying my expertise in Data Engineering, Data Architecture, Cybersecurity (with a focus on the Blue Team), and Discrete Mathematics. I am a bachelor scholar in the STEM field at a globally acclaimed Public University from Brazil and am poised to pursue an Associate's Degree in Cybersecurity. Additionally, I am undertaking a specialization in Data Engineering, facilitated by a full scholarship from ADA & Santander.
+I am currently a Professional Data Engineer and also work as a Software Engineer Consultant during my discretionary time.
 
-In the sphere of problem-solving, I have accumulated substantial exposure to various tools, including, but not limited to, Python, AWS (encompassing Storage and Servlet), Data Streaming, and ETL in Spark. My proficiency also extends to C/C++, PostgreSQL, Bash, VBA/VBS, and Java, with a robust foundation in Data Management, Process Engineering, and Data Analysis.
+My primary focus is on enhancing my expertise in Data Engineering, Data Architecture, Cybersecurity (with a specific emphasis on the Blue Team), and Discrete Mathematics.
+Presently, I am concluding a dual bachelor's degree in the STEM field at a globally recognized Public University in Brazil and preparing to pursue an Associate's Degree in Cybersecurity. 
+Concurrently, I am undertaking a specialization in Data Engineering, supported by a full scholarship from ADA & Santander.
+
+In the realm of problem-solving, I have garnered significant experience with various tools, including but not limited to Python, AWS (covering Storage and Servlet), Data Streaming, and ETL in Spark. My skill set also encompasses C/C++, PostgreSQL, Bash, VBA/VBS, and Java, all underpinned by a solid foundation in Data Management, Process Engineering, and Data Analysis.
 
 - (Data from may/2023 to now): https://wakatime.com/@attam:
 
