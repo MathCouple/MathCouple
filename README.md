@@ -2,7 +2,7 @@ For now, I'm not where I want to be. But I'll play your hole with everything I h
 
 Btw, I didn't write it using GPT or any Artificial Intelligence. Would it be transparent like I am? Maybe. But this one I wrote. I promise.
 
-You first have to know that I'm more than qualified to excel in: Data Engineering (without machine learning, just concepts and zero application. didn't want to focus time here for now). Software Engineering (Backend mainly). QA Testing and DevOps. I have skills in C, C++, Java, and focused on Python. About python, everything that you can think of. From setting up resource allocation to CPU dealing directly in the buffer to print("hello world"). I'm curious, so you can expect that I have more than enough on low-level computing and high-end solutions.
+You first have to know that I'm more than qualified to excel in: Data Engineering (without machine learning, just concepts and zero application. didn't want to focus time here for now). Software Engineering (Backend mainly). QA Testing and DevOps (Cloud AWS mainly),. I have skills in Bash, Powershell, C, C++, Java, and focused on Python. About python, everything that you can think of. From setting up resource allocation to CPU dealing directly in the buffer to print("hello world"). I'm curious, so you can expect that I have more than enough on low-level computing and high-end solutions.
 
 ---
 To survive in this Computing business world, I got proficient at:
@@ -12,6 +12,7 @@ To survive in this Computing business world, I got proficient at:
   - Checkpoint code.
   - Observability (I like to think in terms of Prometheus)
   - Versioning (GIT and GITHUB)
+  - Schedulling (Usually Airflow)
 
 - On Big Data, I had the opportunity to work in a lab building and maintaining from scratch in the produce realm:
   - Distributed System configuration (yes, almost from scratch. Did you ever try to link a slave to a master manually? even on different servers? Yes. I did. Thank you, Python and Bash)
