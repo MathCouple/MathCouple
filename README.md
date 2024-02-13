@@ -43,18 +43,18 @@ To survive in this Computing business world, I got proficient at:
 - 2021 - 2023 2 full years at the Biggest bank in Latin America: Itaú Unibanco start of my journey. Working as a Process Engineer in an Internship. More than 600h of Conceptual and on-hands training. Process Mapping, Lean Methodologies, and a lot more. There are 4 high-value delivers that I'll be happy to share in the interview!
 - 2023 - Now: Implementing a Data Culture as a Consultant in a new-born Tech Company. Working as Head in Data Engineering. In a team with 4 members: 1 Manager, 1 Senior, 1 Software Engineer and me.
 
-- Courses (100% scholarship at all of them):
-  - Data Engineer specialization - ADA BRAZIL & SANTANDER INTERNATIONAL.
-  - Physics Bachelor in progress - UFABC BRAZIL.
-  - Science and Technology Bachelor in progress - UFABC BRAZIL.
-  - Associate Degree on Cybersecurity in progress - UNINTER INTERNATIONAL.
+2023 - Present: Implementing a Data Culture as a Consultant in a newly-founded Tech Company. Working as Head of Data Engineering in a team of 4 members: 1 Manager, 1 Senior, 1 Software Engineer, and me.
 
-Portuguese is my native Language. I'm BRAZILLIAN ("A cobra vai fumar").
-Engligh is where I'm also good at. You can classify me into C2 or almost at it.
-Russian, Spanish and Italian is where I know the basics. Spanish most of all.
+Courses (100% scholarship for all of them):
 
-In resume:
-Low cust solutions. High level and Creative solutions. Fast Learner.
+- Data Engineer Specialization - ADA BRAZIL & SANTANDER INTERNATIONAL.
+- Physics Bachelor in progress - UFABC BRAZIL.
+- Science and Technology Bachelor in progress - UFABC BRAZIL.
+- Associate Degree in Cybersecurity in progress - UNINTER INTERNATIONAL.
+- Portuguese is my native language. I'm BRAZILIAN ("A cobra vai fumar"). English is where I'm also proficient. You can classify me as C2 or almost at it. I know the basics in Russian, Spanish, and Italian, most of all in Spanish.
+
+Me, in summary:
+ - Low-cost solutions. High-level and creative solutions. Fast learner.
 
 - (Data from may/2023 to now): https://wakatime.com/@attam (1 have 2 accounts on GH, 1 is private and the other is this one):
 [![Harlok's wakatime stats](https://github-readme-stats.vercel.app/api/wakatime?username=attam)]([https://github.com/anuraghazra/github-readme-stats](https://wakatime.com/@attam)https://wakatime.com/@attam)
