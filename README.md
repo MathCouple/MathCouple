@@ -11,6 +11,7 @@ To survive in this Computing business world, I got proficient at:
   - TDD, OOP, MVVM, SOLID.
   - Checkpoint code.
   - Observability (I like to think in terms of Prometheus)
+  - Versioning (GIT and GITHUB)
 
 - On Big Data, I had the opportunity to work in a lab building and maintaining from scratch in the produce realm:
   - Distributed System configuration (yes, almost from scratch. Did you ever try to link a slave to a master manually? even on different servers? Yes. I did. Thank you, Python and Bash)
@@ -32,7 +33,7 @@ To survive in this Computing business world, I got proficient at:
   - I work as a Leader, because I'm not at my place yet. If you're my "leader inside the bubble", I'll do enough of what you want me to do. Values? Don't worry, we probably "share" all:
     - Empathy, Friendship, Sportive Family, Love, Dedication, and most of all, Loyalty.
 
---
+---
 - About Salary and Payment:
   - Show me what you have. I'll take a medium in the market, probably removing outliers in Glassdoor and using it as a base. You're on that? So let's go.
 
