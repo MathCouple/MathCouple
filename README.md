@@ -54,5 +54,5 @@ Courses (100% scholarship for all of them):
 Me, in summary:
  - Low-cost solutions. High-level and creative solutions. Fast learner.
 
-- (Data from may/2023 to now): https://wakatime.com/@attam (1 have 2 accounts on GH, 1 is private and the other is this one):
+- (Data from may/2023 to now): https://wakatime.com/@attam (I have 2 accounts on GH, 1 is private and the other is this one):
 [![Harlok's wakatime stats](https://github-readme-stats.vercel.app/api/wakatime?username=attam)]([https://github.com/anuraghazra/github-readme-stats](https://wakatime.com/@attam)https://wakatime.com/@attam)
