@@ -1,4 +1,4 @@
-For now, I'm not where I want to be. But I'll play your hole with everything I have until I succeed. You can contact me at any place between medium and consultant level. It's not the usual CV that you are accustomed to reading. I have clear objectives. So take your time and read what is below:
+For now, I'm not where I want to be. But I'll play your role with everything I have until I succeed. You can contact me at any place between medium and consultant level. It's not the usual CV that you are accustomed to reading. I have clear objectives. So take your time and read what is below:
 
 Btw, I didn't write it using GPT or any Artificial Intelligence. Would it be transparent like I am? Maybe. But this one I wrote. I promise.
 
