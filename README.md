@@ -41,7 +41,7 @@ To survive in this Computing business world, I got proficient at:
 - Experience - almost half a decade in Process Engineering and Software Engineering:
 
 - 2021 - 2023 2 full years at the Biggest bank in Latin America: Itaú Unibanco start of my journey. Working as a Process Engineer in an Internship. More than 600h of Conceptual and on-hands training. Process Mapping, Lean Methodologies, and a lot more. There are 4 high-value delivers that I'll be happy to share in the interview!
-- 2023 - Present: Implementing a Data Culture as a Consultant in a newly-founded Tech Company. Working as Head of Data Engineering in a team of 4 members: 1 Manager, 1 Senior, 1 Software Engineer, and me.
+- 2023 - Present: Implementing a Data Culture as a Consultant in a newly-founded Tech Company. Working as Head of Data Engineering in a team of 6 members: 1 Manager, 1 DS, 2 Software Engineer, 1 Data Engineer and me.
 
 Courses (100% scholarship for all of them):
 
