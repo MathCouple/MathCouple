@@ -21,7 +21,7 @@ To survive in this Computing business world, I got proficient at:
   - Manual memory controlling,
 
 - But you have to know: in order to be good at Big Data and Near-Real-time processing, I also specialized in low and medium-end data solutions:
-  - Pandas, Dask, Polaris. I used them all. Polaris almost nothing. Pandas the most. It's my best. I can run your life through pandas. Now, if it'll take an eternity to run it's not with me: Batch processing is the key!
+  - Pandas, Dask, Polaris. I used them all. Polaris almost nothing. Pandas the most. It's my best. I can run your life through pandas. Now, if it'll take an eternity to run it's not with me: chunk processing is the key!
 
 - Relational and Non-Relational Database:
   - It's almost all the same, if you include sharding, pooling, and some concepts.
