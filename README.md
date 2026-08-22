@@ -2,13 +2,13 @@
 
 # Hi, I'm Matheus A.
 
-### Senior Data Engineer · Data Architecture · Distributed Systems
+### Senior Data Engineer · Data Architecture · Distributed Systems · AI Engineering
 
-<img src="https://readme-typing-svg.demolab.com?font=Fira+Code&size=20&duration=3000&pause=850&center=true&vCenter=true&width=980&lines=I+build+data+systems+that+survive+production;Architecture+means+nothing+if+it+cannot+be+operated%2C+measured+and+evolved;Python+%7C+Spark+%7C+Databricks+%7C+SQL+%7C+Cloud+%7C+Distributed+Systems" alt="Typing SVG" />
+<img src="https://readme-typing-svg.demolab.com?font=Fira+Code&size=20&duration=3000&pause=850&center=true&vCenter=true&width=980&lines=I+build+data+and+AI+systems+that+survive+production;Architecture+means+nothing+if+it+cannot+be+operated%2C+measured+and+evolved;Python+%7C+Spark+%7C+Databricks+%7C+RAG+%7C+LLMs+%7C+Distributed+Systems" alt="Typing SVG" />
 
 <p>
   <img src="https://img.shields.io/badge/Data%20Engineering-Senior-0A66C2?style=for-the-badge" alt="Senior Data Engineering" />
-  <img src="https://img.shields.io/badge/Focus-Data%20Architecture-6F42C1?style=for-the-badge" alt="Data Architecture" />
+  <img src="https://img.shields.io/badge/Focus-Data%20%26%20AI%20Architecture-6F42C1?style=for-the-badge" alt="Data and AI Architecture" />
   <img src="https://img.shields.io/badge/Systems-Distributed-111827?style=for-the-badge" alt="Distributed Systems" />
 </p>
 
@@ -28,11 +28,11 @@
 <tr>
 <td width="62%" valign="top">
 
-I engineer **data-intensive systems, distributed processing platforms and production-grade data architectures**.
+I engineer **data-intensive systems, distributed processing platforms, production AI and production-grade data architectures**.
 
 I've worked across **pharmaceuticals, agribusiness, retail, wholesale, startups, regulated environments, financial markets, major Latin American banking environments, and S&P 500 companies**.
 
-My work sits where **architecture meets production** — Spark, Databricks, databases, cloud, networking, observability, performance, reliability, migrations and incident response.
+My work sits where **architecture meets production** — Spark, Databricks, databases, cloud, networking, AI/LLM systems, observability, performance, reliability, migrations and incident response.
 
 > **I care about systems that work beyond the diagram — under scale, failure and real production constraints.**
 
@@ -43,12 +43,12 @@ My work sits where **architecture meets production** — Spark, Databricks, data
 engineering /
 ├── data-architecture
 ├── distributed-systems
+├── ai-llm-systems
+├── rag-semantic-search
+├── knowledge-graphs
 ├── spark-databricks
-├── databases
 ├── cloud-platforms
-├── streaming
 ├── reliability
-├── performance
 ├── observability
 └── system-design
 ```
@@ -78,6 +78,10 @@ Across these environments, I have worked with systems involving **high-volume da
 - Data platform and pipeline architecture
 - Apache Spark / PySpark internals, performance and troubleshooting
 - Databricks and lakehouse architectures
+- Production AI and LLM-enabled systems
+- RAG, vector search, embeddings and semantic search
+- Knowledge bases, knowledge graphs and retrieval architectures
+- LLM orchestration, evaluation, observability and AI governance
 - Batch and streaming workloads
 - Relational and NoSQL data systems
 - Cloud networking, compute, storage and security boundaries
@@ -115,10 +119,11 @@ I usually reduce architecture discussions to concrete engineering questions:
 |---|---|
 | **Languages** | Python, PySpark, SQL, Scala, Java, Bash |
 | **Data & Processing** | Apache Spark, Databricks, Delta Lake, Hadoop, Hive, Kafka, Airflow |
+| **AI Engineering** | LLMs, RAG, Embeddings, Vector Search, Semantic Search, Knowledge Bases, Knowledge Graphs, LLM Evaluation, AI Observability, AI Governance |
 | **Databases** | PostgreSQL, Microsoft SQL Server, MySQL, NoSQL systems |
 | **Cloud** | Azure, AWS, GCP |
 | **Platform** | Docker, Kubernetes, Linux, Terraform, Ansible, CI/CD |
-| **Architecture** | Distributed Systems, Data Architecture, Data Modeling, Batch/Streaming, Reliability, Scalability, System Design |
+| **Architecture** | Distributed Systems, Data Architecture, AI Architecture, Data Modeling, Batch/Streaming, Reliability, Scalability, System Design |
 | **Production Engineering** | Observability, Performance Tuning, Incident Analysis, Data Quality, Capacity Planning, Failure Recovery |
 
 <div align="center">
@@ -142,6 +147,8 @@ I usually reduce architecture discussions to concrete engineering questions:
 **Databricks Certified Data Engineer Professional**
 
 Focused on production-grade data engineering, Spark/Databricks workloads, data pipelines and platform engineering.
+
+**Next areas:** Generative AI Engineering · Responsible AI · AI Governance
 
 </td>
 <td width="50%" valign="top">
