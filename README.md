@@ -1,6 +1,6 @@
 <div align="center" style="display: flex; flex-wrap: wrap; justify-content: center; align-items: flex-start;">
   <!-- Almost half a decade of experience -->
-  <img src="https://img.shields.io/badge/Experience-3.5%2B%20Years-informational?style=flat&logo=expertsexchange" alt="Experience" style="height: 40px; margin: 5px;">
+  <img src="https://img.shields.io/badge/Experience-4.5%2B%20Years-informational?style=flat&logo=expertsexchange" alt="Experience" style="height: 40px; margin: 5px;">
   <img src="https://img.shields.io/badge/Linux-Operating%20System-orange?style=flat&logo=linux" alt="Linux" style="height: 40px; margin: 5px;">
 
 </div>
