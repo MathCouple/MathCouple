@@ -161,9 +161,8 @@ A quantitative background that strongly influences how I approach systems: model
 ## Languages
 
 <p>
-  <img src="https://img.shields.io/badge/Portuguese-Native-009C3B?style=flat-square" alt="Portuguese" />
-  <img src="https://img.shields.io/badge/English-Professional-1D4ED8?style=flat-square" alt="English" />
-  <img src="https://img.shields.io/badge/Spanish-Professional-F59E0B?style=flat-square" alt="Spanish" />
+  <img src="https://img.shields.io/badge/Portuguese-Native-009C3B?style=flat-square" alt="Portuguese Native" />
+  <img src="https://img.shields.io/badge/English-Fluent-1D4ED8?style=flat-square" alt="English Fluent" />
 </p>
 
 ---
