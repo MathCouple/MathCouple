@@ -126,13 +126,42 @@ I usually reduce architecture discussions to concrete engineering questions:
 | **Architecture** | Distributed Systems, Data Architecture, AI Architecture, Data Modeling, Batch/Streaming, Reliability, Scalability, System Design |
 | **Production Engineering** | Observability, Performance Tuning, Incident Analysis, Data Quality, Capacity Planning, Failure Recovery |
 
-<div align="center">
+---
 
-### Core stack
+## Core stack
 
-<img src="https://skillicons.dev/icons?i=python,scala,java,postgres,mysql,aws,azure,gcp,docker,kubernetes,linux,terraform,ansible,git,github,bash" alt="Engineering stack" />
+<table>
+<tr>
+<td width="50%" valign="top">
 
-</div>
+### Data & Processing
+
+<img src="https://skillicons.dev/icons?i=python,scala,postgres,mysql" alt="Data engineering stack" />
+
+`PySpark` · `Apache Spark` · `Databricks` · `Delta Lake` · `Kafka` · `Airflow` · `Hadoop` · `Hive`
+
+### Cloud
+
+<img src="https://skillicons.dev/icons?i=azure,aws,gcp" alt="Cloud stack" />
+
+`Azure` · `AWS` · `GCP`
+
+</td>
+<td width="50%" valign="top">
+
+### AI Engineering
+
+`LLMs` · `RAG` · `Embeddings` · `Vector Search` · `Semantic Search` · `Knowledge Bases` · `Knowledge Graphs` · `LLM Evaluation` · `AI Observability` · `AI Governance`
+
+### Platform & Infrastructure
+
+<img src="https://skillicons.dev/icons?i=docker,kubernetes,linux,terraform,ansible,git,github,bash" alt="Platform engineering stack" />
+
+`Docker` · `Kubernetes` · `Linux` · `Terraform` · `Ansible` · `CI/CD`
+
+</td>
+</tr>
+</table>
 
 ---
 
