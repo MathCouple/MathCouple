@@ -1,10 +1,10 @@
 <div align="center">
 
-# Hi, I'm MathCouple
+# Hi, I'm Matheus A.
 
 ### Senior Data Engineer · Data Architecture · Distributed Systems
 
-<img src="https://readme-typing-svg.demolab.com?font=Fira+Code&size=20&duration=3200&pause=900&center=true&vCenter=true&width=900&lines=Designing+reliable%2C+scalable+and+maintainable+data+systems;Python+%7C+Spark+%7C+SQL+%7C+Databricks+%7C+Cloud+%7C+Distributed+Systems;Engineering+data+platforms+from+architecture+to+production" alt="Typing SVG" />
+<img src="https://readme-typing-svg.demolab.com?font=Fira+Code&size=20&duration=3000&pause=850&center=true&vCenter=true&width=980&lines=I+build+data+systems+that+survive+production;Architecture+means+nothing+if+it+cannot+be+operated%2C+measured+and+evolved;Python+%7C+Spark+%7C+Databricks+%7C+SQL+%7C+Cloud+%7C+Distributed+Systems" alt="Typing SVG" />
 
 <p>
   <img src="https://img.shields.io/badge/Data%20Engineering-Senior-0A66C2?style=for-the-badge" alt="Senior Data Engineering" />
@@ -13,13 +13,8 @@
 </p>
 
 <p>
-  <img src="https://img.shields.io/badge/Python-3776AB?style=flat-square&logo=python&logoColor=white" alt="Python" />
-  <img src="https://img.shields.io/badge/Apache%20Spark-E25A1C?style=flat-square&logo=apachespark&logoColor=white" alt="Apache Spark" />
-  <img src="https://img.shields.io/badge/Databricks-FF3621?style=flat-square&logo=databricks&logoColor=white" alt="Databricks" />
-  <img src="https://img.shields.io/badge/Azure-0078D4?style=flat-square&logo=microsoftazure&logoColor=white" alt="Azure" />
-  <img src="https://img.shields.io/badge/AWS-232F3E?style=flat-square&logo=amazonaws&logoColor=white" alt="AWS" />
-  <img src="https://img.shields.io/badge/Kubernetes-326CE5?style=flat-square&logo=kubernetes&logoColor=white" alt="Kubernetes" />
-  <img src="https://img.shields.io/badge/Linux-FCC624?style=flat-square&logo=linux&logoColor=black" alt="Linux" />
+  <img src="https://img.shields.io/badge/Databricks-Certified%20Data%20Engineer%20Professional-FF3621?style=flat-square&logo=databricks&logoColor=white" alt="Databricks Certified Data Engineer Professional" />
+  <img src="https://img.shields.io/badge/Background-Physics%20%26%20Mathematics-111827?style=flat-square" alt="Physics and Mathematics background" />
 </p>
 
 </div>
@@ -30,29 +25,30 @@
 
 <table>
 <tr>
-<td width="58%" valign="top">
+<td width="62%" valign="top">
 
-I work at the intersection of **Data Engineering, Software Engineering and Architecture**, building platforms that need to remain reliable as data volume, complexity and operational requirements grow.
+I engineer **data-intensive systems, distributed processing platforms and production-grade data architectures**.
 
-My work spans the full lifecycle of data-intensive systems: **ingestion, distributed processing, storage, orchestration, cloud infrastructure, observability, performance, reliability and production troubleshooting**.
+I have worked across **pharmaceuticals, agribusiness, retail, wholesale, startups, regulated environments, financial markets, major Latin American banking environments, and data engineering initiatives inside S&P 500 companies**.
 
-I am particularly interested in the decisions behind a system: **why a technology fits a workload, what trade-offs it introduces, how it behaves under failure, and what changes when the system has to scale**.
+My work sits where **architecture meets production**: ingestion, Spark, Databricks, databases, orchestration, cloud, networking, observability, performance, reliability, migrations and incident response.
 
-I prefer architecture that stays close to implementation. A good design should not only look correct in a diagram — it should remain understandable, measurable and operable when it reaches production.
+I do not treat architecture as a diagramming exercise. I care about what happens when **volume multiplies, latency moves, a dependency fails, the network resets a connection, a partition becomes hot, a database starts waiting, a pipeline misses its SLA, or production behaves differently from the design**.
 
 </td>
-<td width="42%" valign="top">
+<td width="38%" valign="top">
 
 ```text
-current-focus /
-├── data-platforms
+engineering /
+├── data-architecture
 ├── distributed-systems
 ├── spark-databricks
 ├── databases
-├── cloud-architecture
+├── cloud-platforms
 ├── streaming
 ├── reliability
 ├── performance
+├── observability
 └── system-design
 ```
 
@@ -60,17 +56,31 @@ current-focus /
 </tr>
 </table>
 
+> **I have two modes of working:** the work I am paid to deliver, and the engineering problems I choose to solve beyond the formal scope — as long as they never conflict with my responsibilities. I have consistently pursued measurable impact in every environment I have worked in.
+
 <details open>
+<summary><b>Where I have operated</b></summary>
+<br />
+
+**Industries & environments**
+
+`Pharmaceuticals` · `Agribusiness` · `Retail` · `Wholesale` · `Startups` · `Regulated Environments` · `Financial Markets` · `Large Banking Environments` · `S&P 500 Companies`
+
+Across these environments, I have worked with systems involving **high-volume data processing, enterprise integration, cloud platforms, analytical workloads, distributed computation, production reliability and modernization**.
+
+</details>
+
+<details>
 <summary><b>What I work with</b></summary>
 <br />
 
 - Data platform and pipeline architecture
-- Apache Spark / PySpark performance and troubleshooting
+- Apache Spark / PySpark internals, performance and troubleshooting
 - Databricks and lakehouse architectures
 - Batch and streaming workloads
 - Relational and NoSQL data systems
-- Cloud networking, storage, compute and security boundaries
-- Data migration and modernization
+- Cloud networking, compute, storage and security boundaries
+- Data migration and platform modernization
 - Production incidents, observability and root-cause analysis
 - CI/CD, containers and infrastructure automation
 - System design with explicit architectural trade-offs
@@ -78,84 +88,72 @@ current-focus /
 </details>
 
 <details>
-<summary><b>Technical toolbox</b></summary>
+<summary><b>How I approach engineering</b></summary>
 <br />
 
-| Area | Technologies |
-|---|---|
-| Languages | Python, PySpark, SQL, Scala, Java, Bash |
-| Data & Processing | Apache Spark, Databricks, Delta Lake, Hadoop, Hive, Kafka, Airflow |
-| Databases | PostgreSQL, Microsoft SQL Server, MySQL, NoSQL systems |
-| Cloud | Azure, AWS, GCP |
-| Platform | Docker, Kubernetes, Linux, Terraform, Ansible, CI/CD |
-| Architecture | Distributed systems, data-intensive systems, batch/stream processing, reliability, scalability, system design |
+I usually reduce architecture discussions to concrete engineering questions:
 
-</details>
-
-<details>
-<summary><b>How I think about architecture</b></summary>
-<br />
-
-When evaluating a system, I usually start with questions such as:
-
-- What fails first as load increases?
-- Where is the state, and who owns it?
+- What fails first when load increases?
+- What is the actual bottleneck: CPU, memory, disk, network, serialization, shuffle, locks or downstream capacity?
+- Where does state live, and who owns it?
 - What happens during partial failure?
-- Which guarantees are actually required: consistency, ordering, durability, availability?
-- What is the operational cost of the design?
-- Can the system be observed well enough to debug it under pressure?
-- Can it evolve without requiring a rewrite every time requirements change?
+- Which guarantees are truly required: consistency, ordering, durability or availability?
+- What evidence do the logs and metrics provide?
+- Can the system be debugged under production pressure?
+- What is the recovery path when a dependency becomes unavailable?
+- What does the design cost to operate, not only to build?
+- Can it evolve without turning every change into a migration project?
 
 </details>
 
 ---
 
-## Recent experience
+## Technical toolbox
 
-<details open>
-<summary><b>Data Solution Engineer / Data Architect · AB InBev</b></summary>
-<br />
-
-**2025 — 2026 · Consulting engagement**
-
-Worked on enterprise data platforms and production workloads involving **Databricks, Apache Spark, Delta Lake, Azure, orchestration, data quality, migrations and distributed data processing**.
-
-The role combined hands-on engineering with architectural responsibilities: investigating performance bottlenecks, evolving pipelines and platform components, handling production incidents, improving reliability and evaluating trade-offs across data, compute, storage and integration layers.
-
-</details>
-
-<details>
-<summary><b>Senior Data Engineering Consultant · EY</b></summary>
-<br />
-
-**2025**
-
-Worked as a senior consultant on enterprise-scale data engineering initiatives, contributing to the design, implementation and evolution of data solutions with a strong focus on **engineering quality, scalability, maintainability and production readiness**.
-
-</details>
-
----
-
-## Engineering stack
+| Area | Technologies / Topics |
+|---|---|
+| **Languages** | Python, PySpark, SQL, Scala, Java, Bash |
+| **Data & Processing** | Apache Spark, Databricks, Delta Lake, Hadoop, Hive, Kafka, Airflow |
+| **Databases** | PostgreSQL, Microsoft SQL Server, MySQL, NoSQL systems |
+| **Cloud** | Azure, AWS, GCP |
+| **Platform** | Docker, Kubernetes, Linux, Terraform, Ansible, CI/CD |
+| **Architecture** | Distributed Systems, Data Architecture, Data Modeling, Batch/Streaming, Reliability, Scalability, System Design |
+| **Production Engineering** | Observability, Performance Tuning, Incident Analysis, Data Quality, Capacity Planning, Failure Recovery |
 
 <div align="center">
 
-### Data & Processing
-<img src="https://skillicons.dev/icons?i=python,scala,java,postgres,mysql" alt="Data technologies" />
+### Core stack
 
-**PySpark · Apache Spark · SQL · T-SQL · Delta Lake · Databricks · Hadoop · Hive · Kafka · Airflow**
-
-### Platform & Cloud
-<img src="https://skillicons.dev/icons?i=aws,azure,gcp,docker,kubernetes,linux,terraform,ansible" alt="Platform technologies" />
-
-**AWS · Azure · GCP · Docker · Kubernetes · Linux · Terraform · Ansible · CI/CD**
-
-### Engineering
-<img src="https://skillicons.dev/icons?i=git,github,vscode,bash" alt="Engineering tools" />
-
-**Distributed Systems · Data Architecture · Data Modeling · Observability · Performance Tuning · Data Quality · Software Design**
+<img src="https://skillicons.dev/icons?i=python,scala,java,postgres,mysql,aws,azure,gcp,docker,kubernetes,linux,terraform,ansible,git,github,bash" alt="Engineering stack" />
 
 </div>
+
+---
+
+## Certification & technical background
+
+<table>
+<tr>
+<td width="50%" valign="top">
+
+### Certification
+
+**Databricks Certified Data Engineer Professional**
+
+Focused on production-grade data engineering, Spark/Databricks workloads, data pipelines and platform engineering.
+
+</td>
+<td width="50%" valign="top">
+
+### Background
+
+**Physics & Mathematics**
+
+A quantitative background that strongly influences how I approach systems: models, constraints, estimation, measurement, performance and first-principles reasoning.
+
+</td>
+</tr>
+</table>
 
 ---
 
@@ -169,20 +167,8 @@ Worked as a senior consultant on enterprise-scale data engineering initiatives, 
 
 ---
 
-## Coding activity
-
 <div align="center">
 
-<a href="https://wakatime.com/@attam">
-  <img src="https://github-readme-stats.vercel.app/api/wakatime?username=attam&layout=compact" alt="WakaTime coding activity" />
-</a>
-
-</div>
-
----
-
-<div align="center">
-
-### Engineering systems that are easier to operate, scale, understand and evolve.
+### Build it. Measure it. Break assumptions. Fix the bottleneck. Make it survive production.
 
 </div>
