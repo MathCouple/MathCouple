@@ -34,8 +34,6 @@ I've worked across **pharmaceuticals, agribusiness, retail, wholesale, startups,
 
 My work sits where **architecture meets production** — Spark, Databricks, databases, cloud, networking, AI/LLM systems, observability, performance, reliability, migrations and incident response.
 
-> **I care about systems that work beyond the diagram — under scale, failure and real production constraints.**
-
 </td>
 <td width="38%" valign="top">
 
@@ -68,46 +66,6 @@ engineering /
 `Pharmaceuticals` · `Agribusiness` · `Retail` · `Wholesale` · `Startups` · `Regulated Environments` · `Financial Markets` · `Large Banking Environments` · `S&P 500 Companies`
 
 Across these environments, I have worked with systems involving **high-volume data processing, enterprise integration, cloud platforms, analytical workloads, distributed computation, production reliability and modernization**.
-
-</details>
-
-<details>
-<summary><b>What I work with</b></summary>
-<br />
-
-- Data platform and pipeline architecture
-- Apache Spark / PySpark internals, performance and troubleshooting
-- Databricks and lakehouse architectures
-- Production AI and LLM-enabled systems
-- RAG, vector search, embeddings and semantic search
-- Knowledge bases, knowledge graphs and retrieval architectures
-- LLM orchestration, evaluation, observability and AI governance
-- Batch and streaming workloads
-- Relational and NoSQL data systems
-- Cloud networking, compute, storage and security boundaries
-- Data migration and platform modernization
-- Production incidents, observability and root-cause analysis
-- CI/CD, containers and infrastructure automation
-- System design with explicit architectural trade-offs
-
-</details>
-
-<details>
-<summary><b>How I approach engineering</b></summary>
-<br />
-
-I usually reduce architecture discussions to concrete engineering questions:
-
-- What fails first when load increases?
-- What is the actual bottleneck: CPU, memory, disk, network, serialization, shuffle, locks or downstream capacity?
-- Where does state live, and who owns it?
-- What happens during partial failure?
-- Which guarantees are truly required: consistency, ordering, durability or availability?
-- What evidence do the logs and metrics provide?
-- Can the system be debugged under production pressure?
-- What is the recovery path when a dependency becomes unavailable?
-- What does the design cost to operate, not only to build?
-- Can it evolve without turning every change into a migration project?
 
 </details>
 
@@ -158,35 +116,6 @@ I usually reduce architecture discussions to concrete engineering questions:
 <img src="https://skillicons.dev/icons?i=docker,kubernetes,linux,terraform,ansible,git,github,bash" alt="Platform engineering stack" />
 
 `Docker` · `Kubernetes` · `Linux` · `Terraform` · `Ansible` · `CI/CD`
-
-</td>
-</tr>
-</table>
-
----
-
-## Certification & technical background
-
-<table>
-<tr>
-<td width="50%" valign="top">
-
-### Certification
-
-**Databricks Certified Data Engineer Professional**
-
-Focused on production-grade data engineering, Spark/Databricks workloads, data pipelines and platform engineering.
-
-**Next areas:** Generative AI Engineering · Responsible AI · AI Governance
-
-</td>
-<td width="50%" valign="top">
-
-### Background
-
-**Physics & Mathematics**
-
-A quantitative background that strongly influences how I approach systems: models, constraints, estimation, measurement, performance and first-principles reasoning.
 
 </td>
 </tr>
