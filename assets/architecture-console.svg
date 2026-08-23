@@ -1,0 +1,98 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="760" height="430" viewBox="0 0 760 430" role="img" aria-label="Animated engineering architecture console">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#020617"/>
+      <stop offset="50%" stop-color="#0f172a"/>
+      <stop offset="100%" stop-color="#111827"/>
+    </linearGradient>
+    <linearGradient id="line" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#22d3ee" stop-opacity="0"/>
+      <stop offset="50%" stop-color="#22d3ee"/>
+      <stop offset="100%" stop-color="#a78bfa" stop-opacity="0"/>
+    </linearGradient>
+    <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="3" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <style>
+      .mono{font-family:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,"Liberation Mono",monospace}
+      .label{font-size:13px;fill:#cbd5e1}
+      .title{font-size:15px;font-weight:700;fill:#f8fafc}
+      .muted{font-size:11px;fill:#64748b}
+      .node{fill:#0b1220;stroke:#334155;stroke-width:1}
+      .nodeHot{fill:#0b1220;stroke:#22d3ee;stroke-width:1.2}
+    </style>
+  </defs>
+
+  <rect width="760" height="430" rx="22" fill="url(#bg)"/>
+  <rect x="1" y="1" width="758" height="428" rx="21" fill="none" stroke="#334155"/>
+
+  <circle cx="26" cy="25" r="5" fill="#ef4444"/>
+  <circle cx="43" cy="25" r="5" fill="#f59e0b"/>
+  <circle cx="60" cy="25" r="5" fill="#22c55e"/>
+  <text x="82" y="30" class="mono muted">engineering://architecture-console</text>
+
+  <text x="28" y="68" class="mono title">SYSTEM MAP</text>
+  <text x="649" y="68" class="mono muted">LIVE</text>
+  <circle cx="714" cy="64" r="5" fill="#22c55e" filter="url(#glow)">
+    <animate attributeName="opacity" values="1;.2;1" dur="1.4s" repeatCount="indefinite"/>
+  </circle>
+
+  <path d="M380 118 L184 176 M380 118 L576 176 M184 215 L184 262 M576 215 L576 262 M184 301 L184 348 M576 301 L576 348 M380 118 L380 348" stroke="#334155" stroke-width="1.4" fill="none"/>
+  <path d="M380 118 L184 176 M380 118 L576 176 M184 215 L184 262 M576 215 L576 262 M184 301 L184 348 M576 301 L576 348 M380 118 L380 348" stroke="url(#line)" stroke-width="2.2" fill="none" stroke-dasharray="70 760" filter="url(#glow)">
+    <animate attributeName="stroke-dashoffset" values="0;-830" dur="3.6s" repeatCount="indefinite"/>
+  </path>
+
+  <g transform="translate(277 90)">
+    <rect width="206" height="56" rx="12" class="nodeHot"/>
+    <text x="103" y="24" text-anchor="middle" class="mono title">data-architecture</text>
+    <text x="103" y="41" text-anchor="middle" class="mono muted">system-design</text>
+    <rect x="0" y="54" width="206" height="2" fill="#22d3ee" opacity=".45">
+      <animate attributeName="width" values="0;206;0" dur="3s" repeatCount="indefinite"/>
+    </rect>
+  </g>
+
+  <g transform="translate(82 176)">
+    <rect width="204" height="39" rx="10" class="node"/>
+    <text x="102" y="25" text-anchor="middle" class="mono label">distributed-systems</text>
+    <animateTransform attributeName="transform" type="translate" values="82 176;82 173;82 176" dur="4s" repeatCount="indefinite"/>
+  </g>
+  <g transform="translate(474 176)">
+    <rect width="204" height="39" rx="10" class="node"/>
+    <text x="102" y="25" text-anchor="middle" class="mono label">ai-llm-systems</text>
+    <animateTransform attributeName="transform" type="translate" values="474 176;474 179;474 176" dur="4.3s" repeatCount="indefinite"/>
+  </g>
+
+  <g transform="translate(82 262)">
+    <rect width="204" height="39" rx="10" class="node"/>
+    <text x="102" y="25" text-anchor="middle" class="mono label">spark-databricks</text>
+  </g>
+  <g transform="translate(474 262)">
+    <rect width="204" height="39" rx="10" class="node"/>
+    <text x="102" y="25" text-anchor="middle" class="mono label">rag-semantic-search</text>
+  </g>
+
+  <g transform="translate(82 348)">
+    <rect width="204" height="39" rx="10" class="node"/>
+    <text x="102" y="25" text-anchor="middle" class="mono label">cloud-platforms</text>
+  </g>
+  <g transform="translate(474 348)">
+    <rect width="204" height="39" rx="10" class="node"/>
+    <text x="102" y="25" text-anchor="middle" class="mono label">knowledge-graphs</text>
+  </g>
+
+  <g transform="translate(310 262)">
+    <rect width="140" height="39" rx="10" class="nodeHot"/>
+    <text x="70" y="25" text-anchor="middle" class="mono label">reliability</text>
+  </g>
+  <g transform="translate(310 348)">
+    <rect width="140" height="39" rx="10" class="nodeHot"/>
+    <text x="70" y="25" text-anchor="middle" class="mono label">observability</text>
+  </g>
+
+  <rect x="28" y="405" width="704" height="2" rx="1" fill="#1e293b"/>
+  <rect x="28" y="405" width="150" height="2" rx="1" fill="#22d3ee">
+    <animate attributeName="x" values="28;582;28" dur="5s" repeatCount="indefinite"/>
+    <animate attributeName="opacity" values=".15;1;.15" dur="2.5s" repeatCount="indefinite"/>
+  </rect>
+</svg>
