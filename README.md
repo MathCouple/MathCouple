@@ -15,7 +15,7 @@
 </p>
 
 <p>
-  <a href="https://www.linkedin.com/in/matya2"><img src="https://img.shields.io/badge/LinkedIn-Matheus%20A.-0A66C2?style=flat-square&logo=linkedin&logoColor=white" alt="LinkedIn" /></a>
+  <a href="https://www.linkedin.com/in/matya21/"><img src="https://img.shields.io/badge/LinkedIn-Matheus%20A.-0A66C2?style=flat-square&logo=linkedin&logoColor=white" alt="LinkedIn" /></a>
   <img src="https://img.shields.io/badge/Databricks-Certified%20Data%20Engineer%20Professional-FF3621?style=flat-square&logo=databricks&logoColor=white" alt="Databricks Certified Data Engineer Professional" />
   <img src="https://img.shields.io/badge/Background-Physics%20%26%20Mathematics-111827?style=flat-square" alt="Physics and Mathematics background" />
 </p>
