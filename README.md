@@ -1,10 +1,12 @@
 <div align="center">
 
+<img width="100%" src="https://capsule-render.vercel.app/api?type=waving&height=120&section=header&color=0:020617,45:0f172a,75:0e7490,100:6d28d9" alt="Profile header" />
+
 # Hi, I'm Matheus A.
 
 ### Senior Data Engineer · Data Architecture · Distributed Systems · AI Engineering
 
-<img src="https://readme-typing-svg.demolab.com?font=Fira+Code&size=20&duration=3000&pause=850&center=true&vCenter=true&width=980&lines=I+build+data+and+AI+systems+that+survive+production;Architecture+means+nothing+if+it+cannot+be+operated%2C+measured+and+evolved;Python+%7C+Spark+%7C+Databricks+%7C+RAG+%7C+LLMs+%7C+Distributed+Systems" alt="Typing SVG" />
+<img src="https://readme-typing-svg.demolab.com?font=Fira+Code&size=20&duration=2600&pause=650&center=true&vCenter=true&width=980&lines=I+build+data+and+AI+systems+that+survive+production;Architecture+means+nothing+if+it+cannot+be+operated%2C+measured+and+evolved;Python+%7C+Spark+%7C+Databricks+%7C+RAG+%7C+LLMs+%7C+Distributed+Systems" alt="Typing SVG" />
 
 <p>
   <img src="https://img.shields.io/badge/Data%20Engineering-Senior-0A66C2?style=for-the-badge" alt="Senior Data Engineering" />
@@ -26,7 +28,7 @@
 
 <table>
 <tr>
-<td width="62%" valign="top">
+<td width="55%" valign="top">
 
 I engineer **data-intensive systems, distributed processing platforms, production AI and production-grade data architectures**.
 
@@ -35,21 +37,9 @@ I've worked across **pharmaceuticals, agribusiness, retail, wholesale, startups,
 My work sits where **architecture meets production** — Spark, Databricks, databases, cloud, networking, AI/LLM systems, observability, performance, reliability, migrations and incident response.
 
 </td>
-<td width="38%" valign="top">
+<td width="45%" valign="middle" align="center">
 
-```text
-engineering /
-├── data-architecture
-├── distributed-systems
-├── ai-llm-systems
-├── rag-semantic-search
-├── knowledge-graphs
-├── spark-databricks
-├── cloud-platforms
-├── reliability
-├── observability
-└── system-design
-```
+<img src="https://raw.githubusercontent.com/MathCouple/MathCouple/main/assets/architecture-console.svg" alt="Animated engineering architecture console" width="100%" />
 
 </td>
 </tr>
@@ -141,5 +131,7 @@ Across these environments, I have worked with systems involving **high-volume da
 </picture>
 
 ### Build it. Measure it. Break assumptions. Fix the bottleneck. Make it survive production.
+
+<img width="100%" src="https://capsule-render.vercel.app/api?type=waving&height=90&section=footer&color=0:6d28d9,45:0e7490,100:020617" alt="Profile footer" />
 
 </div>
