@@ -134,6 +134,12 @@ Across these environments, I have worked with systems involving **high-volume da
 
 <div align="center">
 
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/MathCouple/MathCouple/output/github-contribution-grid-snake-dark.svg" />
+  <source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/MathCouple/MathCouple/output/github-contribution-grid-snake.svg" />
+  <img alt="GitHub contribution snake" src="https://raw.githubusercontent.com/MathCouple/MathCouple/output/github-contribution-grid-snake.svg" />
+</picture>
+
 ### Build it. Measure it. Break assumptions. Fix the bottleneck. Make it survive production.
 
 </div>
