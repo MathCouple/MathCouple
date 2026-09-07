@@ -26,40 +26,45 @@
 
 ## Core stack
 
-<table>
-<tr>
-<td width="50%" valign="top">
-
-### Data & Processing
+<details>
+<summary><b>Data & Processing</b></summary>
+<br />
 
 <img src="https://skillicons.dev/icons?i=python,scala,postgres,mysql" alt="Data engineering stack" />
 
 `Python` · `PySpark` · `SQL` · `Scala` · `Java` · `Bash`  
 `Apache Spark` · `Databricks` · `Delta Lake` · `Kafka` · `Airflow` · `Hadoop` · `Hive`
 
-### Cloud
+</details>
+
+<details>
+<summary><b>Cloud</b></summary>
+<br />
 
 <img src="https://skillicons.dev/icons?i=azure,aws,gcp" alt="Cloud stack" />
 
 `Azure` · `AWS` · `GCP`
 
-</td>
-<td width="50%" valign="top">
+</details>
 
-### AI Engineering
+<details>
+<summary><b>AI Engineering</b></summary>
+<br />
 
 `LLMs` · `RAG` · `Embeddings` · `Vector Search` · `Semantic Search`  
 `Knowledge Bases` · `Knowledge Graphs` · `LLM Evaluation` · `AI Observability` · `AI Governance`
 
-### Platform & Infrastructure
+</details>
+
+<details>
+<summary><b>Platform & Infrastructure</b></summary>
+<br />
 
 <img src="https://skillicons.dev/icons?i=docker,kubernetes,linux,terraform,ansible,git,github,bash" alt="Platform engineering stack" />
 
 `Docker` · `Kubernetes` · `Linux` · `Terraform` · `Ansible` · `CI/CD`
 
-</td>
-</tr>
-</table>
+</details>
 
 <details>
 <summary><b>Architecture & production</b></summary>
