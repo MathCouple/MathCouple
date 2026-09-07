@@ -1,4 +1,4 @@
-name: Generate contribution pipeline
+name: Generate activity current
 
 on:
   workflow_dispatch:
@@ -9,7 +9,7 @@ on:
       - main
     paths:
       - ".github/workflows/contribution-pipeline.yml"
-      - "scripts/generate_contribution_pipeline.py"
+      - "scripts/generate_activity_current.py"
 
 permissions:
   contents: write
@@ -31,10 +31,10 @@ jobs:
             -F login='MathCouple' \
             > contribution-calendar.json
 
-      - name: Generate contribution pipeline
-        run: python scripts/generate_contribution_pipeline.py contribution-calendar.json dist
+      - name: Generate activity current
+        run: python scripts/generate_activity_current.py contribution-calendar.json dist
 
-      - name: Publish contribution pipeline
+      - name: Publish activity current
         uses: peaceiris/actions-gh-pages@v4
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
