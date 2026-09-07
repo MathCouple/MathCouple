@@ -71,8 +71,6 @@ def activity_points(weeks: list[dict]) -> list[tuple[float, float]]:
             last_y = weighted_sum / total
         raw.append((x, last_y))
 
-    # A small smoothing pass keeps the signal organic without detaching it from
-    # the contribution data that defines each weekly anchor.
     smooth: list[tuple[float, float]] = []
     for index, (x, y) in enumerate(raw):
         start = max(0, index - 1)
@@ -128,8 +126,8 @@ def render(data: dict, dark: bool) -> str:
             )
 
     return f'''<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 {WIDTH} {HEIGHT}" width="{WIDTH}" height="{HEIGHT}" role="img" aria-labelledby="title desc">
-<title id="title">Animated GitHub contribution heartbeat</title>
-<desc id="desc">An ECG-like pulse follows the weekly center of GitHub contribution activity. Its visible wake grows with contribution volume.</desc>
+<title id="title">Animated GitHub activity heartbeat</title>
+<desc id="desc">A heartbeat-like pulse follows the weekly center of GitHub contributions. Its trail grows with contribution volume.</desc>
 <defs>
   <linearGradient id="current" x1="0" x2="1">
     <stop offset="0" stop-color="{p['signal']}"/>
@@ -152,7 +150,7 @@ def render(data: dict, dark: bool) -> str:
 
 <g>{''.join(cells)}</g>
 
-<!-- Only the moving wake reveals the data-derived route. -->
+<!-- Only the live pulse reveals the route. The guide path remains invisible. -->
 <use href="#activityPath" pathLength="1000" fill="none" stroke="url(#current)"
      stroke-width="{trail_width + 4.8:.2f}" stroke-linecap="round" stroke-opacity=".10"
      stroke-dasharray="{tail_length} {1000 - tail_length}" filter="url(#soft)">
@@ -164,7 +162,6 @@ def render(data: dict, dark: bool) -> str:
   <animate attributeName="stroke-dashoffset" values="0;-1000" dur="{DURATION}s" repeatCount="indefinite"/>
 </use>
 
-<!-- One moving pulse makes direction immediately readable without exposing the full route. -->
 <g filter="url(#glow)">
   <circle r="4.1" fill="{p['signal']}">
     <animateMotion dur="{DURATION}s" repeatCount="indefinite" rotate="auto"><mpath href="#activityPath"/></animateMotion>
