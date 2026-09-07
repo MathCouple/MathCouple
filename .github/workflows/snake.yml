@@ -30,6 +30,9 @@ jobs:
             dist/github-contribution-grid-snake.svg
             dist/github-contribution-grid-snake-dark.svg?palette=github-dark
 
+      - name: Prepare generated files
+        run: sudo chown -R "$(id -u):$(id -g)" dist
+
       - name: Add telemetry layer
         run: |
           python scripts/enhance_snake.py \
