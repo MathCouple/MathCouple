@@ -19,9 +19,9 @@
 </p>
 
 <picture>
-  <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/MathCouple/MathCouple/output/activity-current-dark.svg" />
-  <source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/MathCouple/MathCouple/output/activity-current.svg" />
-  <img width="100%" alt="Animated GitHub activity current" src="https://raw.githubusercontent.com/MathCouple/MathCouple/output/activity-current.svg" />
+  <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/MathCouple/MathCouple/main/assets/generated/activity-heartbeat-dark.svg" />
+  <source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/MathCouple/MathCouple/main/assets/generated/activity-heartbeat.svg" />
+  <img width="100%" alt="GitHub activity heartbeat writing MALVES" src="https://raw.githubusercontent.com/MathCouple/MathCouple/main/assets/generated/activity-heartbeat.svg" />
 </picture>
 
 </div>
