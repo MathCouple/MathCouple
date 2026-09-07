@@ -1,7 +1,5 @@
 <div align="center">
 
-<img width="100%" src="https://capsule-render.vercel.app/api?type=waving&height=110&section=header&color=0:020617,42:0f172a,72:0e7490,100:6d28d9" alt="Profile header" />
-
 # Matheus A.
 
 ### Senior Data Engineer · Data Architecture · Distributed Systems · AI Engineering
@@ -15,58 +13,49 @@
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/MathCouple/MathCouple/output/github-contribution-grid-snake-dark.svg" />
   <source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/MathCouple/MathCouple/output/github-contribution-grid-snake.svg" />
-  <img width="100%" alt="Animated commit reactor with contribution snake" src="https://raw.githubusercontent.com/MathCouple/MathCouple/output/github-contribution-grid-snake.svg" />
+  <img width="100%" alt="Animated GitHub contribution signal" src="https://raw.githubusercontent.com/MathCouple/MathCouple/output/github-contribution-grid-snake.svg" />
 </picture>
 
-<img src="https://readme-typing-svg.demolab.com?font=Fira+Code&size=19&duration=2300&pause=450&center=true&vCenter=true&width=980&lines=Data-intensive+systems+%E2%86%92+production;Distributed+processing+%E2%86%92+reliability;RAG+%E2%86%92+semantic+search+%E2%86%92+knowledge+graphs;Spark+%C2%B7+Databricks+%C2%B7+Cloud+%C2%B7+AI+%C2%B7+Systems" alt="Typing SVG" />
-
 </div>
-
----
 
 <details>
 <summary><b>Core stack</b></summary>
 <br />
 
-<details>
-<summary><b>Data & Processing</b></summary>
-<br />
+<table>
+<tr>
+<td width="50%" valign="top">
+
+### Data & Processing
 
 <img src="https://skillicons.dev/icons?i=python,scala,postgres,mysql" alt="Data engineering stack" />
 
 `Python` · `PySpark` · `SQL` · `Scala` · `Java` · `Bash`  
 `Apache Spark` · `Databricks` · `Delta Lake` · `Kafka` · `Airflow` · `Hadoop` · `Hive`
 
-</details>
-
-<details>
-<summary><b>Cloud</b></summary>
-<br />
+### Cloud
 
 <img src="https://skillicons.dev/icons?i=azure,aws,gcp" alt="Cloud stack" />
 
 `Azure` · `AWS` · `GCP`
 
-</details>
+</td>
+<td width="50%" valign="top">
 
-<details>
-<summary><b>AI Engineering</b></summary>
-<br />
+### AI Engineering
 
 `LLMs` · `RAG` · `Embeddings` · `Vector Search` · `Semantic Search`  
 `Knowledge Bases` · `Knowledge Graphs` · `LLM Evaluation` · `AI Observability` · `AI Governance`
 
-</details>
-
-<details>
-<summary><b>Platform & Infrastructure</b></summary>
-<br />
+### Platform & Infrastructure
 
 <img src="https://skillicons.dev/icons?i=docker,kubernetes,linux,terraform,ansible,git,github,bash" alt="Platform engineering stack" />
 
 `Docker` · `Kubernetes` · `Linux` · `Terraform` · `Ansible` · `CI/CD`
 
-</details>
+</td>
+</tr>
+</table>
 
 </details>
 
@@ -103,8 +92,6 @@ My work sits where **architecture meets production** — Spark, Databricks, data
 
 </details>
 
----
-
 <div align="center">
 
 <p>
@@ -112,8 +99,6 @@ My work sits where **architecture meets production** — Spark, Databricks, data
   <img src="https://img.shields.io/badge/English-Fluent-1D4ED8?style=flat-square" alt="English Fluent" />
 </p>
 
-### Build it. Measure it. Break assumptions. Fix the bottleneck. Make it survive production.
-
-<img width="100%" src="https://capsule-render.vercel.app/api?type=waving&height=85&section=footer&color=0:6d28d9,45:0e7490,100:020617" alt="Profile footer" />
+<sub>Build it. Measure it. Break assumptions. Fix the bottleneck. Make it survive production.</sub>
 
 </div>
