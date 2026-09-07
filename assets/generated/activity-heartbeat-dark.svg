@@ -1,0 +1,63 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 160" width="880" height="160" role="img" aria-labelledby="title desc">
+<title id="title">GitHub activity heartbeat writing MALVES</title>
+<desc id="desc">A contribution-driven heartbeat crosses the profile, changes color while writing MALVES in the center, then continues and repeats forever.</desc>
+<defs>
+  <filter id="glow" x="-160%" y="-160%" width="420%" height="420%">
+    <feGaussianBlur stdDeviation="2.4" result="blur"/>
+    <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+  </filter>
+  <filter id="soft" x="-140%" y="-140%" width="380%" height="380%">
+    <feGaussianBlur stdDeviation="5.2"/>
+  </filter>
+</defs>
+
+<!-- No static guide, calendar or hidden route: only the live signal is visible. -->
+<path d="M40.0 104.0 L48.6 104.0 L54.0 104.0 L57.8 98.6 L61.1 107.4 L65.4 70.0 L69.7 121.0 L74.6 104.0 L84.3 104.0 L94.0 104.0 L102.6 104.0 L108.0 104.0 L111.8 98.6 L115.1 107.4 L119.4 70.0 L123.7 121.0 L128.6 104.0 L138.3 104.0 L148.0 104.0 L156.6 104.0 L162.0 104.0 L165.8 98.6 L169.1 107.4 L173.4 70.0 L177.7 121.0 L182.6 104.0 L192.3 104.0 L202.0 104.0 L210.6 104.0 L216.0 104.0 L219.8 98.6 L223.1 107.4 L227.4 70.0 L231.7 121.0 L236.6 104.0 L246.3 104.0 L256.0 104.0 L264.6 104.0 L270.0 104.0 L273.8 98.6 L277.1 107.4 L281.4 70.0 L285.7 121.0 L290.6 104.0 L300.3 104.0 L310.0 104.0" pathLength="1000" fill="none" stroke="#22d3ee" stroke-width="6.55"
+      stroke-linecap="round" stroke-linejoin="round" stroke-opacity=".10" stroke-dasharray="202 798" filter="url(#soft)">
+  <animate attributeName="stroke-dashoffset" values="1000;0;0;1000" keyTimes="0;.25;.29;1" dur="8.80s" repeatCount="indefinite"/>
+  <animate attributeName="opacity" values="0;.13;.13;0;0" keyTimes="0;.03;.24;.29;1" dur="8.80s" repeatCount="indefinite"/>
+</path>
+<path d="M40.0 104.0 L48.6 104.0 L54.0 104.0 L57.8 98.6 L61.1 107.4 L65.4 70.0 L69.7 121.0 L74.6 104.0 L84.3 104.0 L94.0 104.0 L102.6 104.0 L108.0 104.0 L111.8 98.6 L115.1 107.4 L119.4 70.0 L123.7 121.0 L128.6 104.0 L138.3 104.0 L148.0 104.0 L156.6 104.0 L162.0 104.0 L165.8 98.6 L169.1 107.4 L173.4 70.0 L177.7 121.0 L182.6 104.0 L192.3 104.0 L202.0 104.0 L210.6 104.0 L216.0 104.0 L219.8 98.6 L223.1 107.4 L227.4 70.0 L231.7 121.0 L236.6 104.0 L246.3 104.0 L256.0 104.0 L264.6 104.0 L270.0 104.0 L273.8 98.6 L277.1 107.4 L281.4 70.0 L285.7 121.0 L290.6 104.0 L300.3 104.0 L310.0 104.0" pathLength="1000" fill="none" stroke="#22d3ee" stroke-width="2.35"
+      stroke-linecap="round" stroke-linejoin="round" stroke-opacity=".92" stroke-dasharray="202 798" filter="url(#glow)">
+  <animate attributeName="stroke-dashoffset" values="1000;0;0;1000" keyTimes="0;.25;.29;1" dur="8.80s" repeatCount="indefinite"/>
+  <animate attributeName="opacity" values="0;1;1;0;0" keyTimes="0;.03;.24;.29;1" dur="8.80s" repeatCount="indefinite"/>
+</path>
+
+<!-- The same signal changes color and writes MALVES, letter by letter, in the center. -->
+<g><path d="M310 104 L310 60 L324 84 L338 60 L338 104" pathLength="1" fill="none" stroke="#a78bfa" stroke-width="2.70"
+      stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="1" stroke-dashoffset="1" filter="url(#glow)">
+  <animate attributeName="stroke-dashoffset" values="1;1;0;0;1" keyTimes="0;0.220;0.330;0.440;1" dur="8.80s" repeatCount="indefinite"/>
+  <animate attributeName="opacity" values="0;0;1;1;0" keyTimes="0;0.220;0.330;0.440;1" dur="8.80s" repeatCount="indefinite"/>
+</path><path d="M354 104 L368 60 L382 104 M359 86 H377" pathLength="1" fill="none" stroke="#a78bfa" stroke-width="2.70"
+      stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="1" stroke-dashoffset="1" filter="url(#glow)">
+  <animate attributeName="stroke-dashoffset" values="1;1;0;0;1" keyTimes="0;0.310;0.420;0.530;1" dur="8.80s" repeatCount="indefinite"/>
+  <animate attributeName="opacity" values="0;0;1;1;0" keyTimes="0;0.310;0.420;0.530;1" dur="8.80s" repeatCount="indefinite"/>
+</path><path d="M398 60 V104 H426" pathLength="1" fill="none" stroke="#a78bfa" stroke-width="2.70"
+      stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="1" stroke-dashoffset="1" filter="url(#glow)">
+  <animate attributeName="stroke-dashoffset" values="1;1;0;0;1" keyTimes="0;0.400;0.510;0.620;1" dur="8.80s" repeatCount="indefinite"/>
+  <animate attributeName="opacity" values="0;0;1;1;0" keyTimes="0;0.400;0.510;0.620;1" dur="8.80s" repeatCount="indefinite"/>
+</path><path d="M442 60 L456 104 L470 60" pathLength="1" fill="none" stroke="#a78bfa" stroke-width="2.70"
+      stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="1" stroke-dashoffset="1" filter="url(#glow)">
+  <animate attributeName="stroke-dashoffset" values="1;1;0;0;1" keyTimes="0;0.490;0.600;0.710;1" dur="8.80s" repeatCount="indefinite"/>
+  <animate attributeName="opacity" values="0;0;1;1;0" keyTimes="0;0.490;0.600;0.710;1" dur="8.80s" repeatCount="indefinite"/>
+</path><path d="M514 60 H486 V104 H514 M486 82 H509" pathLength="1" fill="none" stroke="#a78bfa" stroke-width="2.70"
+      stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="1" stroke-dashoffset="1" filter="url(#glow)">
+  <animate attributeName="stroke-dashoffset" values="1;1;0;0;1" keyTimes="0;0.580;0.690;0.800;1" dur="8.80s" repeatCount="indefinite"/>
+  <animate attributeName="opacity" values="0;0;1;1;0" keyTimes="0;0.580;0.690;0.800;1" dur="8.80s" repeatCount="indefinite"/>
+</path><path d="M530 60 H568 V82 H530 V104 H568" pathLength="1" fill="none" stroke="#a78bfa" stroke-width="2.70"
+      stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="1" stroke-dashoffset="1" filter="url(#glow)">
+  <animate attributeName="stroke-dashoffset" values="1;1;0;0;1" keyTimes="0;0.670;0.780;0.880;1" dur="8.80s" repeatCount="indefinite"/>
+  <animate attributeName="opacity" values="0;0;1;1;0" keyTimes="0;0.670;0.780;0.880;1" dur="8.80s" repeatCount="indefinite"/>
+</path></g>
+
+<path d="M568.0 104.0 L576.7 104.0 L582.1 104.0 L586.0 99.0 L589.2 107.1 L593.6 72.7 L597.9 119.6 L602.8 104.0 L612.6 104.0 L622.4 104.0 L631.1 104.0 L636.5 104.0 L640.4 99.0 L643.6 107.1 L648.0 72.7 L652.3 119.6 L657.2 104.0 L667.0 104.0 L676.8 104.0 L685.5 104.0 L690.9 104.0 L694.8 99.0 L698.0 107.1 L702.4 72.7 L706.7 119.6 L711.6 104.0 L721.4 104.0 L731.2 104.0 L739.9 104.0 L745.3 104.0 L749.2 99.0 L752.4 107.1 L756.8 72.7 L761.1 119.6 L766.0 104.0 L775.8 104.0 L785.6 104.0 L794.3 104.0 L799.7 104.0 L803.6 99.0 L806.8 107.1 L811.2 72.7 L815.5 119.6 L820.4 104.0 L830.2 104.0 L840.0 104.0" pathLength="1000" fill="none" stroke="#22d3ee" stroke-width="6.55"
+      stroke-linecap="round" stroke-linejoin="round" stroke-opacity=".10" stroke-dasharray="202 798" filter="url(#soft)">
+  <animate attributeName="stroke-dashoffset" values="1000;1000;0;0;1000" keyTimes="0;.74;.96;.985;1" dur="8.80s" repeatCount="indefinite"/>
+  <animate attributeName="opacity" values="0;0;.13;.13;0" keyTimes="0;.72;.78;.96;1" dur="8.80s" repeatCount="indefinite"/>
+</path>
+<path d="M568.0 104.0 L576.7 104.0 L582.1 104.0 L586.0 99.0 L589.2 107.1 L593.6 72.7 L597.9 119.6 L602.8 104.0 L612.6 104.0 L622.4 104.0 L631.1 104.0 L636.5 104.0 L640.4 99.0 L643.6 107.1 L648.0 72.7 L652.3 119.6 L657.2 104.0 L667.0 104.0 L676.8 104.0 L685.5 104.0 L690.9 104.0 L694.8 99.0 L698.0 107.1 L702.4 72.7 L706.7 119.6 L711.6 104.0 L721.4 104.0 L731.2 104.0 L739.9 104.0 L745.3 104.0 L749.2 99.0 L752.4 107.1 L756.8 72.7 L761.1 119.6 L766.0 104.0 L775.8 104.0 L785.6 104.0 L794.3 104.0 L799.7 104.0 L803.6 99.0 L806.8 107.1 L811.2 72.7 L815.5 119.6 L820.4 104.0 L830.2 104.0 L840.0 104.0" pathLength="1000" fill="none" stroke="#22d3ee" stroke-width="2.35"
+      stroke-linecap="round" stroke-linejoin="round" stroke-opacity=".92" stroke-dasharray="202 798" filter="url(#glow)">
+  <animate attributeName="stroke-dashoffset" values="1000;1000;0;0;1000" keyTimes="0;.74;.96;.985;1" dur="8.80s" repeatCount="indefinite"/>
+  <animate attributeName="opacity" values="0;0;1;1;0" keyTimes="0;.72;.78;.96;1" dur="8.80s" repeatCount="indefinite"/>
+</path>
+</svg>
