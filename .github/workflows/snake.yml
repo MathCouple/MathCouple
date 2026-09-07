@@ -1,4 +1,4 @@
-name: Generate contribution pulse
+name: Generate contribution pipeline
 
 on:
   workflow_dispatch:
@@ -9,7 +9,7 @@ on:
       - main
     paths:
       - ".github/workflows/snake.yml"
-      - "scripts/generate_contribution_pulse.py"
+      - "scripts/generate_contribution_pipeline.py"
 
 permissions:
   contents: write
@@ -31,10 +31,10 @@ jobs:
             -F login='MathCouple' \
             > contribution-calendar.json
 
-      - name: Generate contribution pulse
-        run: python scripts/generate_contribution_pulse.py contribution-calendar.json dist
+      - name: Generate contribution pipeline
+        run: python scripts/generate_contribution_pipeline.py contribution-calendar.json dist
 
-      - name: Publish contribution pulse
+      - name: Publish contribution pipeline
         uses: peaceiris/actions-gh-pages@v4
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
