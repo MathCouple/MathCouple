@@ -12,7 +12,67 @@ GAP = 3
 STEP = CELL + GAP
 GRID_X = 66
 GRID_Y = 33
-DURATION = 10.5
+DURATION = 12.5
+SCAN_END = 0.78
+HOLD_END = 0.90
+RESET_END = 0.99
+
+FONT = {
+    "M": [
+        "10001",
+        "11011",
+        "10101",
+        "10101",
+        "10001",
+        "10001",
+        "10001",
+    ],
+    "A": [
+        "01110",
+        "10001",
+        "10001",
+        "11111",
+        "10001",
+        "10001",
+        "10001",
+    ],
+    "L": [
+        "10000",
+        "10000",
+        "10000",
+        "10000",
+        "10000",
+        "10000",
+        "11111",
+    ],
+    "V": [
+        "10001",
+        "10001",
+        "10001",
+        "10001",
+        "10001",
+        "01010",
+        "00100",
+    ],
+    "E": [
+        "11111",
+        "10000",
+        "10000",
+        "11110",
+        "10000",
+        "10000",
+        "11111",
+    ],
+    "S": [
+        "01111",
+        "10000",
+        "10000",
+        "01110",
+        "00001",
+        "00001",
+        "11110",
+    ],
+}
 
 
 def level(count: int) -> int:
@@ -36,7 +96,6 @@ def palette(dark: bool) -> dict[str, object]:
             "levels": ["#161b22", "#0e7490", "#0891b2", "#06b6d4", "#67e8f9"],
             "signal": "#22d3ee",
             "accent": "#8b5cf6",
-            "muted": "#8b949e",
         }
     return {
         "bg": "#ffffff",
@@ -45,12 +104,10 @@ def palette(dark: bool) -> dict[str, object]:
         "levels": ["#ebedf0", "#a5f3fc", "#67e8f9", "#22d3ee", "#0891b2"],
         "signal": "#0891b2",
         "accent": "#7c3aed",
-        "muted": "#57606a",
     }
 
 
 def activity_points(weeks: list[dict]) -> list[tuple[float, float]]:
-    """Build one point per week using the activity center of mass for that week."""
     middle_y = GRID_Y + (3 * STEP) + CELL / 2
     raw: list[tuple[float, float]] = []
     last_y = middle_y
@@ -72,7 +129,7 @@ def activity_points(weeks: list[dict]) -> list[tuple[float, float]]:
         raw.append((x, last_y))
 
     smooth: list[tuple[float, float]] = []
-    for index, (x, y) in enumerate(raw):
+    for index, (x, _) in enumerate(raw):
         start = max(0, index - 1)
         end = min(len(raw), index + 2)
         avg_y = sum(raw[j][1] for j in range(start, end)) / (end - start)
@@ -97,6 +154,30 @@ def smooth_path(points: list[tuple[float, float]]) -> str:
     return " ".join(commands)
 
 
+def malves_targets() -> list[tuple[float, float]]:
+    word = "MALVES"
+    target_cell = 8
+    pitch = 10
+    letter_width = (5 * pitch) - (pitch - target_cell)
+    letter_gap = 8
+    total_width = len(word) * letter_width + (len(word) - 1) * letter_gap
+    total_height = (7 * pitch) - (pitch - target_cell)
+    start_x = (WIDTH - total_width) / 2
+    start_y = (HEIGHT - total_height) / 2
+
+    targets: list[tuple[float, float]] = []
+    for letter_index, letter in enumerate(word):
+        letter_x = start_x + letter_index * (letter_width + letter_gap)
+        for row, pattern in enumerate(FONT[letter]):
+            for col, bit in enumerate(pattern):
+                if bit == "1":
+                    targets.append((letter_x + col * pitch, start_y + row * pitch))
+
+    # Assemble the word from left to right as the heartbeat advances.
+    targets.sort(key=lambda point: (point[0], point[1]))
+    return targets
+
+
 def render(data: dict, dark: bool) -> str:
     calendar = data["data"]["user"]["contributionsCollection"]["contributionCalendar"]
     weeks = calendar["weeks"]
@@ -107,32 +188,81 @@ def render(data: dict, dark: bool) -> str:
     grid_height = 7 * STEP - GAP
 
     activity = min(total / 2500.0, 1.0)
-    tail_length = int(130 + activity * 390)
-    trail_width = 1.7 + activity * 1.15
-    points = activity_points(weeks)
-    route = smooth_path(points)
+    tail_length = int(120 + activity * 330)
+    trail_width = 1.6 + activity * 1.0
+    route = smooth_path(activity_points(weeks))
 
-    cells: list[str] = []
+    source_cells: list[dict[str, object]] = []
     for week_index, week in enumerate(weeks):
         for day in week["contributionDays"]:
             weekday = int(day["weekday"])
             count = int(day["contributionCount"])
-            x = GRID_X + week_index * STEP
-            y = GRID_Y + weekday * STEP
-            fill = p["levels"][level(count)]
-            opacity = 0.92 if count else 0.58
+            source_cells.append(
+                {
+                    "week": week_index,
+                    "weekday": weekday,
+                    "count": count,
+                    "x": GRID_X + week_index * STEP,
+                    "y": GRID_Y + weekday * STEP,
+                }
+            )
+
+    targets = malves_targets()
+    selected: dict[int, tuple[float, float]] = {}
+    if targets and source_cells:
+        for target_index, target in enumerate(targets):
+            source_index = round(
+                target_index * (len(source_cells) - 1) / max(1, len(targets) - 1)
+            )
+            selected[source_index] = target
+
+    cells: list[str] = []
+    total_weeks = max(1, len(weeks) - 1)
+
+    for source_index, cell in enumerate(source_cells):
+        week_index = int(cell["week"])
+        count = int(cell["count"])
+        x = float(cell["x"])
+        y = float(cell["y"])
+        fill = str(p["levels"][level(count)])
+        base_opacity = 0.92 if count else 0.58
+
+        pass_time = 0.02 + (week_index / total_weeks) * (SCAN_END - 0.08)
+        settle_time = min(pass_time + 0.055, SCAN_END)
+
+        if source_index in selected:
+            target_x, target_y = selected[source_index]
+            target_fill = str(p["accent"] if level(count) >= 4 else p["signal"])
             cells.append(
-                f'<rect x="{x}" y="{y}" width="{CELL}" height="{CELL}" rx="2" fill="{fill}" opacity="{opacity:.2f}"/>'
+                f'''<rect x="{x:.1f}" y="{y:.1f}" width="{CELL}" height="{CELL}" rx="2" fill="{fill}" opacity="{base_opacity:.2f}">
+  <animate attributeName="x" values="{x:.1f};{x:.1f};{target_x:.1f};{target_x:.1f};{x:.1f};{x:.1f}" keyTimes="0;{pass_time:.4f};{settle_time:.4f};{HOLD_END:.4f};{RESET_END:.4f};1" dur="{DURATION}s" repeatCount="indefinite"/>
+  <animate attributeName="y" values="{y:.1f};{y:.1f};{target_y:.1f};{target_y:.1f};{y:.1f};{y:.1f}" keyTimes="0;{pass_time:.4f};{settle_time:.4f};{HOLD_END:.4f};{RESET_END:.4f};1" dur="{DURATION}s" repeatCount="indefinite"/>
+  <animate attributeName="width" values="{CELL};{CELL};8;8;{CELL};{CELL}" keyTimes="0;{pass_time:.4f};{settle_time:.4f};{HOLD_END:.4f};{RESET_END:.4f};1" dur="{DURATION}s" repeatCount="indefinite"/>
+  <animate attributeName="height" values="{CELL};{CELL};8;8;{CELL};{CELL}" keyTimes="0;{pass_time:.4f};{settle_time:.4f};{HOLD_END:.4f};{RESET_END:.4f};1" dur="{DURATION}s" repeatCount="indefinite"/>
+  <animate attributeName="fill" values="{fill};{fill};{target_fill};{target_fill};{fill};{fill}" keyTimes="0;{pass_time:.4f};{settle_time:.4f};{HOLD_END:.4f};{RESET_END:.4f};1" dur="{DURATION}s" repeatCount="indefinite"/>
+  <animate attributeName="opacity" values="{base_opacity:.2f};{base_opacity:.2f};1;1;{base_opacity:.2f};{base_opacity:.2f}" keyTimes="0;{pass_time:.4f};{settle_time:.4f};{HOLD_END:.4f};{RESET_END:.4f};1" dur="{DURATION}s" repeatCount="indefinite"/>
+</rect>'''
+            )
+        else:
+            cells.append(
+                f'''<rect x="{x:.1f}" y="{y:.1f}" width="{CELL}" height="{CELL}" rx="2" fill="{fill}" opacity="{base_opacity:.2f}">
+  <animate attributeName="opacity" values="{base_opacity:.2f};{base_opacity:.2f};.10;.10;{base_opacity:.2f};{base_opacity:.2f}" keyTimes="0;{pass_time:.4f};{settle_time:.4f};{HOLD_END:.4f};{RESET_END:.4f};1" dur="{DURATION}s" repeatCount="indefinite"/>
+</rect>'''
             )
 
     return f'''<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 {WIDTH} {HEIGHT}" width="{WIDTH}" height="{HEIGHT}" role="img" aria-labelledby="title desc">
-<title id="title">Animated GitHub activity heartbeat</title>
-<desc id="desc">A heartbeat-like pulse follows the weekly center of GitHub contributions. Its trail grows with contribution volume.</desc>
+<title id="title">GitHub activity heartbeat assembling MALVES</title>
+<desc id="desc">A heartbeat follows GitHub contribution activity. As it passes, contribution cells reorganize into MALVES at the center before returning to the calendar for the next cycle.</desc>
 <defs>
   <linearGradient id="current" x1="0" x2="1">
     <stop offset="0" stop-color="{p['signal']}"/>
     <stop offset=".55" stop-color="{p['accent']}"/>
     <stop offset="1" stop-color="{p['signal']}"/>
+  </linearGradient>
+  <linearGradient id="assemblySweep" x1="0" x2="1">
+    <stop offset="0" stop-color="{p['signal']}" stop-opacity="0"/>
+    <stop offset=".5" stop-color="{p['signal']}" stop-opacity=".18"/>
+    <stop offset="1" stop-color="{p['accent']}" stop-opacity="0"/>
   </linearGradient>
   <filter id="glow" x="-180%" y="-180%" width="460%" height="460%">
     <feGaussianBlur stdDeviation="2.3" result="blur"/>
@@ -150,30 +280,38 @@ def render(data: dict, dark: bool) -> str:
 
 <g>{''.join(cells)}</g>
 
-<!-- Only the live pulse reveals the route. The guide path remains invisible. -->
+<!-- The heartbeat is the only thing that reveals the otherwise hidden route. -->
 <use href="#activityPath" pathLength="1000" fill="none" stroke="url(#current)"
      stroke-width="{trail_width + 4.8:.2f}" stroke-linecap="round" stroke-opacity=".10"
      stroke-dasharray="{tail_length} {1000 - tail_length}" filter="url(#soft)">
-  <animate attributeName="stroke-dashoffset" values="0;-1000" dur="{DURATION}s" repeatCount="indefinite"/>
+  <animate attributeName="stroke-dashoffset" values="0;-1000;-1000;0" keyTimes="0;{SCAN_END:.2f};{HOLD_END:.2f};1" dur="{DURATION}s" repeatCount="indefinite"/>
+  <animate attributeName="opacity" values=".10;.10;0;0;.10" keyTimes="0;{SCAN_END - .02:.2f};{SCAN_END + .03:.2f};{RESET_END:.2f};1" dur="{DURATION}s" repeatCount="indefinite"/>
 </use>
 <use href="#activityPath" pathLength="1000" fill="none" stroke="url(#current)"
      stroke-width="{trail_width:.2f}" stroke-linecap="round" stroke-opacity=".72"
      stroke-dasharray="{tail_length} {1000 - tail_length}" filter="url(#glow)">
-  <animate attributeName="stroke-dashoffset" values="0;-1000" dur="{DURATION}s" repeatCount="indefinite"/>
+  <animate attributeName="stroke-dashoffset" values="0;-1000;-1000;0" keyTimes="0;{SCAN_END:.2f};{HOLD_END:.2f};1" dur="{DURATION}s" repeatCount="indefinite"/>
+  <animate attributeName="opacity" values=".72;.72;0;0;.72" keyTimes="0;{SCAN_END - .02:.2f};{SCAN_END + .03:.2f};{RESET_END:.2f};1" dur="{DURATION}s" repeatCount="indefinite"/>
 </use>
 
 <g filter="url(#glow)">
   <circle r="4.1" fill="{p['signal']}">
-    <animateMotion dur="{DURATION}s" repeatCount="indefinite" rotate="auto"><mpath href="#activityPath"/></animateMotion>
+    <animateMotion dur="{DURATION}s" repeatCount="indefinite" calcMode="linear" keyPoints="0;1;1;0" keyTimes="0;{SCAN_END:.2f};{SCAN_END + .03:.2f};1"><mpath href="#activityPath"/></animateMotion>
     <animate attributeName="r" values="3.5;4.8;3.5" dur="1.8s" repeatCount="indefinite"/>
-    <animate attributeName="opacity" values="0;1;1;0" keyTimes="0;.025;.975;1" dur="{DURATION}s" repeatCount="indefinite"/>
+    <animate attributeName="opacity" values="0;1;1;0;0" keyTimes="0;.025;{SCAN_END - .01:.2f};{SCAN_END + .03:.2f};1" dur="{DURATION}s" repeatCount="indefinite"/>
   </circle>
   <circle r="9" fill="none" stroke="{p['accent']}" stroke-width="1" opacity=".32">
-    <animateMotion dur="{DURATION}s" repeatCount="indefinite" rotate="auto"><mpath href="#activityPath"/></animateMotion>
+    <animateMotion dur="{DURATION}s" repeatCount="indefinite" calcMode="linear" keyPoints="0;1;1;0" keyTimes="0;{SCAN_END:.2f};{SCAN_END + .03:.2f};1"><mpath href="#activityPath"/></animateMotion>
     <animate attributeName="r" values="6;12;6" dur="2.15s" repeatCount="indefinite"/>
-    <animate attributeName="opacity" values="0;.34;.34;0" keyTimes="0;.025;.975;1" dur="{DURATION}s" repeatCount="indefinite"/>
+    <animate attributeName="opacity" values="0;.34;.34;0;0" keyTimes="0;.025;{SCAN_END - .01:.2f};{SCAN_END + .03:.2f};1" dur="{DURATION}s" repeatCount="indefinite"/>
   </circle>
 </g>
+
+<!-- A single completion sweep crosses the assembled word before the grid resets. -->
+<rect x="250" y="48" width="70" height="82" rx="20" fill="url(#assemblySweep)" opacity="0" pointer-events="none">
+  <animate attributeName="x" values="250;560" keyTimes="0;1" dur="1.1s" begin="{DURATION * (SCAN_END + .035):.2f}s" repeatCount="indefinite"/>
+  <animate attributeName="opacity" values="0;.34;0" dur="1.1s" begin="{DURATION * (SCAN_END + .035):.2f}s" repeatCount="indefinite"/>
+</rect>
 
 </svg>'''
 
