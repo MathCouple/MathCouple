@@ -1,5 +1,7 @@
 <div align="center">
 
+<img width="100%" src="https://capsule-render.vercel.app/api?type=waving&height=110&section=header&color=0:020617,42:0f172a,72:0e7490,100:6d28d9" alt="Profile top border" />
+
 # Matheus A.
 
 ### Senior Data Engineer · Data Architecture · Distributed Systems · AI Engineering
@@ -17,9 +19,9 @@
 </p>
 
 <picture>
-  <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/MathCouple/MathCouple/output/contribution-pipeline-dark.svg" />
-  <source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/MathCouple/MathCouple/output/contribution-pipeline.svg" />
-  <img width="100%" alt="Animated GitHub contribution data pipeline" src="https://raw.githubusercontent.com/MathCouple/MathCouple/output/contribution-pipeline.svg" />
+  <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/MathCouple/MathCouple/output/activity-current-dark.svg" />
+  <source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/MathCouple/MathCouple/output/activity-current.svg" />
+  <img width="100%" alt="Animated GitHub activity current" src="https://raw.githubusercontent.com/MathCouple/MathCouple/output/activity-current.svg" />
 </picture>
 
 </div>
@@ -95,5 +97,7 @@ My work sits where **architecture meets production** — Spark, Databricks, data
 <div align="center">
 
 <sub>Build it. Measure it. Break assumptions. Fix the bottleneck. Make it survive production.</sub>
+
+<img width="100%" src="https://capsule-render.vercel.app/api?type=waving&height=85&section=footer&color=0:6d28d9,45:0e7490,100:020617" alt="Profile bottom border" />
 
 </div>
