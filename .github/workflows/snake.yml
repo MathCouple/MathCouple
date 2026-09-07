@@ -1,4 +1,4 @@
-name: Generate contribution snake
+name: Generate contribution pulse
 
 on:
   workflow_dispatch:
@@ -9,6 +9,7 @@ on:
       - main
     paths:
       - ".github/workflows/snake.yml"
+      - "scripts/generate_contribution_pulse.py"
 
 permissions:
   contents: write
@@ -18,15 +19,22 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Generate contribution snake
-        uses: Platane/snk@v3
-        with:
-          github_user_name: MathCouple
-          outputs: |
-            dist/github-contribution-grid-snake.svg
-            dist/github-contribution-grid-snake-dark.svg?palette=github-dark
+      - name: Checkout repository
+        uses: actions/checkout@v4
 
-      - name: Publish contribution snake
+      - name: Read contribution calendar
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          gh api graphql \
+            -f query='query($login:String!){user(login:$login){contributionsCollection{contributionCalendar{totalContributions weeks{contributionDays{date contributionCount weekday}}}}}}' \
+            -F login='MathCouple' \
+            > contribution-calendar.json
+
+      - name: Generate contribution pulse
+        run: python scripts/generate_contribution_pulse.py contribution-calendar.json dist
+
+      - name: Publish contribution pulse
         uses: peaceiris/actions-gh-pages@v4
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
