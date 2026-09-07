@@ -5,15 +5,21 @@
 ### Senior Data Engineer · Data Architecture · Distributed Systems · AI Engineering
 
 <p>
+  <img src="https://img.shields.io/badge/Data%20Engineering-Senior-0A66C2?style=for-the-badge" alt="Senior Data Engineering" />
+  <img src="https://img.shields.io/badge/Focus-Data%20%26%20AI%20Architecture-6F42C1?style=for-the-badge" alt="Data and AI Architecture" />
+  <img src="https://img.shields.io/badge/Systems-Distributed-111827?style=for-the-badge" alt="Distributed Systems" />
+</p>
+
+<p>
   <a href="https://www.linkedin.com/in/matya21/"><img src="https://img.shields.io/badge/LinkedIn-Matheus%20A.-0A66C2?style=flat-square&logo=linkedin&logoColor=white" alt="LinkedIn" /></a>
   <img src="https://img.shields.io/badge/Databricks-Certified%20Data%20Engineer%20Professional-FF3621?style=flat-square&logo=databricks&logoColor=white" alt="Databricks Certified Data Engineer Professional" />
   <img src="https://img.shields.io/badge/Background-Physics%20%26%20Mathematics-111827?style=flat-square" alt="Physics and Mathematics background" />
 </p>
 
 <picture>
-  <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/MathCouple/MathCouple/output/github-contribution-grid-snake-dark.svg" />
-  <source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/MathCouple/MathCouple/output/github-contribution-grid-snake.svg" />
-  <img width="100%" alt="GitHub contribution snake" src="https://raw.githubusercontent.com/MathCouple/MathCouple/output/github-contribution-grid-snake.svg" />
+  <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/MathCouple/MathCouple/output/contribution-pipeline-dark.svg" />
+  <source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/MathCouple/MathCouple/output/contribution-pipeline.svg" />
+  <img width="100%" alt="Animated GitHub contribution data pipeline" src="https://raw.githubusercontent.com/MathCouple/MathCouple/output/contribution-pipeline.svg" />
 </picture>
 
 </div>
