@@ -6,23 +6,19 @@
 
 ### Senior Data Engineer · Data Architecture · Distributed Systems · AI Engineering
 
-<img src="https://readme-typing-svg.demolab.com?font=Fira+Code&size=19&duration=2300&pause=450&center=true&vCenter=true&width=980&lines=Data-intensive+systems+%E2%86%92+production;Distributed+processing+%E2%86%92+reliability;RAG+%E2%86%92+semantic+search+%E2%86%92+knowledge+graphs;Spark+%C2%B7+Databricks+%C2%B7+Cloud+%C2%B7+AI+%C2%B7+Systems" alt="Typing SVG" />
-
 <p>
   <a href="https://www.linkedin.com/in/matya21/"><img src="https://img.shields.io/badge/LinkedIn-Matheus%20A.-0A66C2?style=flat-square&logo=linkedin&logoColor=white" alt="LinkedIn" /></a>
   <img src="https://img.shields.io/badge/Databricks-Certified%20Data%20Engineer%20Professional-FF3621?style=flat-square&logo=databricks&logoColor=white" alt="Databricks Certified Data Engineer Professional" />
   <img src="https://img.shields.io/badge/Background-Physics%20%26%20Mathematics-111827?style=flat-square" alt="Physics and Mathematics background" />
 </p>
 
-<img src="https://raw.githubusercontent.com/MathCouple/MathCouple/main/assets/profile-signal.svg" width="100%" alt="Animated data, distributed systems and AI signal" />
-
-<br />
-
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/MathCouple/MathCouple/output/github-contribution-grid-snake-dark.svg" />
   <source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/MathCouple/MathCouple/output/github-contribution-grid-snake.svg" />
-  <img width="100%" alt="Animated contribution telemetry" src="https://raw.githubusercontent.com/MathCouple/MathCouple/output/github-contribution-grid-snake.svg" />
+  <img width="100%" alt="Animated commit reactor with contribution snake" src="https://raw.githubusercontent.com/MathCouple/MathCouple/output/github-contribution-grid-snake.svg" />
 </picture>
+
+<img src="https://readme-typing-svg.demolab.com?font=Fira+Code&size=19&duration=2300&pause=450&center=true&vCenter=true&width=980&lines=Data-intensive+systems+%E2%86%92+production;Distributed+processing+%E2%86%92+reliability;RAG+%E2%86%92+semantic+search+%E2%86%92+knowledge+graphs;Spark+%C2%B7+Databricks+%C2%B7+Cloud+%C2%B7+AI+%C2%B7+Systems" alt="Typing SVG" />
 
 </div>
 
