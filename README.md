@@ -24,7 +24,9 @@
 
 ---
 
-## Core stack
+<details>
+<summary><b>Core stack</b></summary>
+<br />
 
 <details>
 <summary><b>Data & Processing</b></summary>
@@ -63,6 +65,8 @@
 <img src="https://skillicons.dev/icons?i=docker,kubernetes,linux,terraform,ansible,git,github,bash" alt="Platform engineering stack" />
 
 `Docker` · `Kubernetes` · `Linux` · `Terraform` · `Ansible` · `CI/CD`
+
+</details>
 
 </details>
 
