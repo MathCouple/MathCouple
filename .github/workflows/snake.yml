@@ -9,7 +9,6 @@ on:
       - main
     paths:
       - ".github/workflows/snake.yml"
-      - "scripts/enhance_snake.py"
 
 permissions:
   contents: write
@@ -19,9 +18,6 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
-
       - name: Generate contribution snake
         uses: Platane/snk@v3
         with:
@@ -30,30 +26,7 @@ jobs:
             dist/github-contribution-grid-snake.svg
             dist/github-contribution-grid-snake-dark.svg?palette=github-dark
 
-      - name: Read contribution energy
-        id: contribution_energy
-        env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: |
-          TOTAL="$(gh api graphql \
-            -f query='query($login:String!){user(login:$login){contributionsCollection{contributionCalendar{totalContributions}}}}' \
-            -F login='MathCouple' \
-            --jq '.data.user.contributionsCollection.contributionCalendar.totalContributions' 2>/dev/null || true)"
-          TOTAL="${TOTAL:-0}"
-          echo "total=$TOTAL" >> "$GITHUB_OUTPUT"
-          echo "Contribution energy: $TOTAL"
-
-      - name: Prepare generated files
-        run: sudo chown -R "$(id -u):$(id -g)" dist
-
-      - name: Fuse snake with contribution reactor
-        run: |
-          python scripts/enhance_snake.py \
-            --contributions "${{ steps.contribution_energy.outputs.total }}" \
-            dist/github-contribution-grid-snake.svg \
-            dist/github-contribution-grid-snake-dark.svg
-
-      - name: Publish contribution reactor
+      - name: Publish contribution snake
         uses: peaceiris/actions-gh-pages@v4
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
