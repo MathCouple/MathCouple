@@ -9,7 +9,8 @@ on:
       - main
     paths:
       - ".github/workflows/contribution-pipeline.yml"
-      - "scripts/generate_activity_current.py"
+      - "scripts/generate_activity_heartbeat.rb"
+      - "scripts/malves.bf"
 
 permissions:
   contents: write
@@ -24,6 +25,9 @@ jobs:
         with:
           fetch-depth: 0
 
+      - name: Validate heartbeat generator
+        run: ruby -c scripts/generate_activity_heartbeat.rb
+
       - name: Read contribution calendar
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -34,7 +38,11 @@ jobs:
             > contribution-calendar.json
 
       - name: Generate activity heartbeat
-        run: python scripts/generate_activity_current.py contribution-calendar.json assets/generated
+        run: |
+          ruby scripts/generate_activity_heartbeat.rb \
+            contribution-calendar.json \
+            assets/generated \
+            scripts/malves.bf
 
       - name: Commit generated heartbeat to main
         run: |
@@ -48,7 +56,7 @@ jobs:
             git push origin HEAD:main
           fi
 
-      - name: Remove every non-main branch
+      - name: Keep only main branch
         run: |
           git fetch --prune origin '+refs/heads/*:refs/remotes/origin/*'
           git for-each-ref --format='%(refname:short)' refs/remotes/origin/ | while read -r ref; do
