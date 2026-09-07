@@ -107,7 +107,6 @@ def render(data: dict, dark: bool) -> str:
 
     grid_width = max(1, len(weeks) * STEP - GAP)
     grid_height = 7 * STEP - GAP
-    end_x = GRID_X + grid_width
 
     activity = min(total / 2500.0, 1.0)
     tail_length = int(130 + activity * 390)
@@ -129,8 +128,8 @@ def render(data: dict, dark: bool) -> str:
             )
 
     return f'''<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 {WIDTH} {HEIGHT}" width="{WIDTH}" height="{HEIGHT}" role="img" aria-labelledby="title desc">
-<title id="title">Animated GitHub activity current</title>
-<desc id="desc">A luminous activity current follows the weekly center of GitHub contributions. Its tail grows with contribution volume.</desc>
+<title id="title">Animated GitHub contribution heartbeat</title>
+<desc id="desc">An ECG-like pulse follows the weekly center of GitHub contribution activity. Its visible wake grows with contribution volume.</desc>
 <defs>
   <linearGradient id="current" x1="0" x2="1">
     <stop offset="0" stop-color="{p['signal']}"/>
@@ -153,10 +152,7 @@ def render(data: dict, dark: bool) -> str:
 
 <g>{''.join(cells)}</g>
 
-<!-- The faint route is derived from actual weekly contribution centers. -->
-<use href="#activityPath" fill="none" stroke="{p['muted']}" stroke-width="1" stroke-opacity=".10"/>
-
-<!-- Contribution-sized wake. No separate transport rail: the current lives inside the calendar. -->
+<!-- Only the moving wake reveals the data-derived route. -->
 <use href="#activityPath" pathLength="1000" fill="none" stroke="url(#current)"
      stroke-width="{trail_width + 4.8:.2f}" stroke-linecap="round" stroke-opacity=".10"
      stroke-dasharray="{tail_length} {1000 - tail_length}" filter="url(#soft)">
@@ -168,7 +164,7 @@ def render(data: dict, dark: bool) -> str:
   <animate attributeName="stroke-dashoffset" values="0;-1000" dur="{DURATION}s" repeatCount="indefinite"/>
 </use>
 
-<!-- One moving head makes direction immediately readable without becoming a snake. -->
+<!-- One moving pulse makes direction immediately readable without exposing the full route. -->
 <g filter="url(#glow)">
   <circle r="4.1" fill="{p['signal']}">
     <animateMotion dur="{DURATION}s" repeatCount="indefinite" rotate="auto"><mpath href="#activityPath"/></animateMotion>
