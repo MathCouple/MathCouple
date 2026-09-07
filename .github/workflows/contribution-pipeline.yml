@@ -53,6 +53,8 @@ jobs:
             echo "Heartbeat assets already current"
           else
             git commit -m "chore(profile): refresh activity heartbeat"
+            git fetch origin main
+            git rebase origin/main
             git push origin HEAD:main
           fi
 
