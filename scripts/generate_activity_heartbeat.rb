@@ -9,8 +9,8 @@ GAP = 3
 STEP = CELL + GAP
 GRID_X = 66
 GRID_Y = 33
-LEFT_X = 40
-RIGHT_X = 840
+LEFT_X = 56
+RIGHT_X = 824
 WORD_START = 310
 WORD_END = 568
 BASELINE = 104
@@ -146,12 +146,27 @@ def malves_commands(signature)
   raise "unexpected brainfuck signature: #{signature.inspect}" unless signature == 'MALVES'
 
   [
-    'V60', 'L324 84', 'L338 60', 'V104', 'H350',
-    'H354', 'L368 60', 'L382 104', 'L376 86', 'L360 86', 'L354 104', 'H398',
-    'V60', 'V104', 'H426',
-    'H434', 'L442 60', 'L456 104', 'L470 60', 'H486',
-    'H514', 'H486', 'V82', 'H509', 'H486', 'V104', 'H514',
-    'H530', 'V60', 'H568', 'V82', 'H530', 'V104', 'H568'
+    # M — two vertical stems with a clear center valley.
+    'V60', 'L324 83', 'L338 60', 'V104', 'H350',
+
+    # A — apex, two legs and an explicit crossbar.
+    'H354', 'L368 60', 'L382 104', 'L376 86', 'H360', 'L354 104', 'H398',
+
+    # L — retrace the baseline once so the continuous stroke exits at the top.
+    'H426', 'H398', 'V60',
+
+    # A small arch is only a connector; it keeps the following V visually separate.
+    'Q420 50 442 60',
+
+    # V — exactly two diagonals, with no extra stem that could read as M.
+    'L456 104', 'L470 60', 'H486',
+
+    # E — finish at the lower-right so S can begin cleanly from its lower-left.
+    'H514', 'H486', 'V82', 'H509', 'H486', 'V104', 'H514', 'H530',
+
+    # S — rounded reverse traversal: bottom bowl -> waist -> top bowl.
+    'H552', 'Q568 104 568 94', 'Q568 82 554 82', 'H544',
+    'Q530 82 530 70', 'Q530 60 544 60', 'H568'
   ]
 end
 
@@ -159,7 +174,7 @@ end
 def activity_path(weeks, signature)
   week_lanes = activity_lanes(weeks)
   left_indices = weeks.each_index.select { |index| gutter_x(index) <= WORD_START - 16 }
-  right_indices = weeks.each_index.select { |index| gutter_x(index) >= WORD_END + 16 }
+  right_indices = weeks.each_index.select { |index| gutter_x(index) >= WORD_END + 20 }
 
   start_lane = left_indices.empty? ? BASELINE : week_lanes[left_indices.first]
   commands = ["M#{LEFT_X} #{format('%.1f', start_lane)}"]
@@ -180,11 +195,18 @@ def activity_path(weeks, signature)
   commands << "H#{WORD_START}"
   commands.concat(malves_commands(signature))
 
+  # Leave the S at its top-right and descend only after the colored word region.
+  commands << "H#{WORD_END + 10}"
+  commands << "L#{WORD_END + 20} #{BASELINE}"
+  current_y = BASELINE
+
   if right_indices.any?
     first_y = week_lanes[right_indices.first]
-    commands << "H#{WORD_END + 12}"
-    commands << "V#{format('%.1f', first_y)}" if (first_y - BASELINE).abs > 0.1
-    current_y = first_y
+    commands << "H#{WORD_END + 24}"
+    if (first_y - current_y).abs > 0.1
+      commands << "V#{format('%.1f', first_y)}"
+      current_y = first_y
+    end
 
     right_indices.each do |index|
       x = gutter_x(index)
@@ -197,13 +219,9 @@ def activity_path(weeks, signature)
     end
   end
 
+  # Keep the route open. A dash cycle whose pattern length equals pathLength loops
+  # seamlessly without the old off-screen return diagonals leaking into the frame.
   commands << "H#{RIGHT_X}"
-
-  # Hidden return closes the route so the trail loops without a visible jump.
-  commands << "L#{RIGHT_X + 38} #{HEIGHT + 24}"
-  commands << "H#{LEFT_X - 38}"
-  commands << "L#{LEFT_X} #{format('%.1f', start_lane)}"
-  commands << 'Z'
   commands.join(' ')
 end
 
@@ -265,7 +283,7 @@ def render(data, dark, signature)
   <<~SVG
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 #{WIDTH} #{HEIGHT}" width="#{WIDTH}" height="#{HEIGHT}" role="img" aria-labelledby="title desc">
     <title id="title">GitHub contribution heartbeat writing #{signature}</title>
-    <desc id="desc">One continuous activity signal moves through the GitHub contribution grid, routes through the gaps between contribution cells, writes #{signature} in the center in a second color, and loops seamlessly.</desc>
+    <desc id="desc">One continuous activity signal moves through the GitHub contribution grid, writes #{signature} in the center with distinct lettering, and loops without off-screen return strokes.</desc>
     <defs>
       <linearGradient id="signalGradient" gradientUnits="userSpaceOnUse" x1="#{LEFT_X}" x2="#{RIGHT_X}" y1="0" y2="0">
         <stop offset="0%" stop-color="#{colors[:signal]}"/>
@@ -275,6 +293,12 @@ def render(data, dark, signature)
         <stop offset="#{format('%.2f', word_end_offset + 1.0)}%" stop-color="#{colors[:signal]}"/>
         <stop offset="100%" stop-color="#{colors[:signal]}"/>
       </linearGradient>
+      <linearGradient id="edgeFade" gradientUnits="userSpaceOnUse" x1="0" x2="#{WIDTH}" y1="0" y2="0">
+        <stop offset="0%" stop-color="black"/>
+        <stop offset="5%" stop-color="white"/>
+        <stop offset="95%" stop-color="white"/>
+        <stop offset="100%" stop-color="black"/>
+      </linearGradient>
       <filter id="glow" x="-160%" y="-160%" width="420%" height="420%">
         <feGaussianBlur stdDeviation="2.35" result="blur"/>
         <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
@@ -283,7 +307,8 @@ def render(data, dark, signature)
         <feGaussianBlur stdDeviation="5.0"/>
       </filter>
       <clipPath id="viewportClip"><rect width="#{WIDTH}" height="#{HEIGHT}" rx="14"/></clipPath>
-      <clipPath id="wordClip"><rect x="#{WORD_START - 5}" y="52" width="#{WORD_END - WORD_START + 10}" height="64"/></clipPath>
+      <clipPath id="wordClip"><rect x="#{WORD_START - 5}" y="48" width="#{WORD_END - WORD_START + 10}" height="72"/></clipPath>
+      <mask id="edgeSignalMask"><rect width="#{WIDTH}" height="#{HEIGHT}" fill="url(#edgeFade)"/></mask>
       <path id="activityPath" pathLength="1000" d="#{route}"/>
     </defs>
 
@@ -291,8 +316,8 @@ def render(data, dark, signature)
     <rect x="#{GRID_X - 12}" y="#{GRID_Y - 12}" width="#{grid_width + 24}" height="#{grid_height + 24}" rx="12"
           fill="none" stroke="#{colors[:border]}" stroke-width="1" opacity=".34"/>
 
-    <!-- The live signal sits behind the contribution cells, so it uses their gutters instead of painting over them. -->
-    <g clip-path="url(#viewportClip)">
+    <!-- The live signal stays behind the contribution cells and uses their gutters. -->
+    <g clip-path="url(#viewportClip)" mask="url(#edgeSignalMask)">
       <use href="#activityPath" fill="none" stroke="url(#signalGradient)" stroke-width="#{format('%.2f', glow_width)}"
            stroke-linecap="round" stroke-linejoin="round" stroke-opacity=".11"
            stroke-dasharray="#{trail_length} #{trail_gap}" filter="url(#soft)">
@@ -307,7 +332,7 @@ def render(data, dark, signature)
 
     <g>#{cells}</g>
 
-    <!-- Same path, same timing: only the #{signature} portion is promoted above the cells so the signature stays legible. -->
+    <!-- Same continuous path and timing; only the #{signature} portion is promoted above the cells. -->
     <g clip-path="url(#wordClip)" pointer-events="none">
       <use href="#activityPath" fill="none" stroke="url(#signalGradient)" stroke-width="#{format('%.2f', core_width + 0.45)}"
            stroke-linecap="round" stroke-linejoin="round" stroke-opacity="1"
