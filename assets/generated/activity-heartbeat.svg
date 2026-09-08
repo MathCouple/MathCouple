@@ -35,14 +35,14 @@
 
 <!-- The live signal stays behind the contribution cells and uses their gutters. -->
 <g clip-path="url(#viewportClip)" mask="url(#edgeSignalMask)">
-  <use href="#activityPath" fill="none" stroke="url(#signalGradient)" stroke-width="6.93"
+  <use href="#activityPath" fill="none" stroke="url(#signalGradient)" stroke-width="7.07"
        stroke-linecap="round" stroke-linejoin="round" stroke-opacity=".11"
-       stroke-dasharray="353 647" filter="url(#soft)">
+       stroke-dasharray="413 587" filter="url(#soft)">
     <animate attributeName="stroke-dashoffset" values="0;-1000" dur="10.8s" repeatCount="indefinite"/>
   </use>
-  <use href="#activityPath" fill="none" stroke="url(#signalGradient)" stroke-width="2.53"
+  <use href="#activityPath" fill="none" stroke="url(#signalGradient)" stroke-width="2.67"
        stroke-linecap="round" stroke-linejoin="round" stroke-opacity=".98"
-       stroke-dasharray="353 647" filter="url(#glow)">
+       stroke-dasharray="413 587" filter="url(#glow)">
     <animate attributeName="stroke-dashoffset" values="0;-1000" dur="10.8s" repeatCount="indefinite"/>
   </use>
 </g>
@@ -2243,13 +2243,19 @@
            keyTimes="0;0.8670;0.8850;0.9090;1" dur="10.8s" repeatCount="indefinite"/>
   <animate attributeName="stroke-opacity" values="0;0;0.72;0;0"
            keyTimes="0;0.8670;0.8850;0.9090;1" dur="10.8s" repeatCount="indefinite"/>
+</rect><rect x="742" y="59" width="10" height="10" rx="2" fill="#ebedf0" opacity="0.58"
+      stroke="#0891b2" stroke-width=".65" stroke-opacity="0">
+  <animate attributeName="opacity" values="0.58;0.58;0.70;0.58;0.58"
+           keyTimes="0;0.8670;0.8850;0.9090;1" dur="10.8s" repeatCount="indefinite"/>
+  <animate attributeName="stroke-opacity" values="0;0;0.28;0;0"
+           keyTimes="0;0.8670;0.8850;0.9090;1" dur="10.8s" repeatCount="indefinite"/>
 </rect></g>
 
 <!-- Same continuous path and timing; only the MALVES portion is promoted above the cells. -->
 <g clip-path="url(#wordClip)" pointer-events="none">
-  <use href="#activityPath" fill="none" stroke="url(#signalGradient)" stroke-width="2.98"
+  <use href="#activityPath" fill="none" stroke="url(#signalGradient)" stroke-width="3.12"
        stroke-linecap="round" stroke-linejoin="round" stroke-opacity="1"
-       stroke-dasharray="353 647" filter="url(#glow)">
+       stroke-dasharray="413 587" filter="url(#glow)">
     <animate attributeName="stroke-dashoffset" values="0;-1000" dur="10.8s" repeatCount="indefinite"/>
   </use>
 </g>
