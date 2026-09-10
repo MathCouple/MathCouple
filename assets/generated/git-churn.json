@@ -1,8 +1,8 @@
 {
   "login": "MathCouple",
-  "scope": "public non-fork repositories contributed to by the user; commits reachable from default branches",
-  "additions": 3063,
-  "deletions": 2254,
-  "commits": 64,
+  "scope": "public-owned-default-branch-history",
+  "additions": 0,
+  "deletions": 0,
+  "commits": 0,
   "repositories": 1
 }
