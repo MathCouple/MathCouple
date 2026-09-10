@@ -1,4 +1,4 @@
-name: Generate activity heartbeat
+name: Generate profile activity
 
 on:
   workflow_dispatch:
@@ -10,6 +10,7 @@ on:
     paths:
       - ".github/workflows/contribution-pipeline.yml"
       - "scripts/generate_activity_heartbeat.rb"
+      - "scripts/generate_git_churn.rb"
       - "scripts/malves.bf"
 
 permissions:
@@ -25,8 +26,10 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: Validate heartbeat generator
-        run: ruby -c scripts/generate_activity_heartbeat.rb
+      - name: Validate generators
+        run: |
+          ruby -c scripts/generate_activity_heartbeat.rb
+          ruby -c scripts/generate_git_churn.rb
 
       - name: Read contribution calendar
         env:
@@ -44,15 +47,26 @@ jobs:
             assets/generated \
             scripts/malves.bf
 
-      - name: Commit generated heartbeat to main
+      - name: Generate lifetime git churn
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          ruby scripts/generate_git_churn.rb MathCouple assets/generated
+
+      - name: Commit generated profile assets to main
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add assets/generated/activity-heartbeat.svg assets/generated/activity-heartbeat-dark.svg
+          git add \
+            assets/generated/activity-heartbeat.svg \
+            assets/generated/activity-heartbeat-dark.svg \
+            assets/generated/git-churn.svg \
+            assets/generated/git-churn-dark.svg \
+            assets/generated/git-churn.json
           if git diff --cached --quiet; then
-            echo "Heartbeat assets already current"
+            echo "Profile assets already current"
           else
-            git commit -m "chore(profile): refresh activity heartbeat"
+            git commit -m "chore(profile): refresh generated activity stats"
             git fetch origin main
             git rebase origin/main
             git push origin HEAD:main
