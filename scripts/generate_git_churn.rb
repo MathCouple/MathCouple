@@ -1,92 +1,145 @@
 # frozen_string_literal: true
 
 require 'json'
-require 'net/http'
-require 'uri'
+require 'open3'
 require 'fileutils'
 
 LOGIN = ARGV[0] || 'MathCouple'
 OUTPUT_DIR = ARGV[1] || 'assets/generated'
-TOKEN = ENV.fetch('PROFILE_STATS_TOKEN', '').strip
-API_VERSION = '2026-03-10'
+PROFILE_TOKEN = ENV.fetch('PROFILE_STATS_TOKEN', '').strip
+ACTION_TOKEN = ENV.fetch('GH_TOKEN', '').strip
+TOKEN = PROFILE_TOKEN.empty? ? ACTION_TOKEN : PROFILE_TOKEN
+
+abort('missing GitHub token') if TOKEN.empty?
 
 
-def github_get(path, token: nil, attempts: 5)
-  uri = URI("https://api.github.com#{path}")
-  request = Net::HTTP::Get.new(uri)
-  request['Accept'] = 'application/vnd.github+json'
-  request['X-GitHub-Api-Version'] = API_VERSION
-  request['User-Agent'] = 'MathCouple-profile-stats'
-  request['Authorization'] = "Bearer #{token}" unless token.to_s.empty?
+def graphql(query, variables = {})
+  command = ['gh', 'api', 'graphql', '-f', "query=#{query}"]
+  variables.each do |key, value|
+    next if value.nil?
 
-  attempts.times do |attempt|
-    response = Net::HTTP.start(uri.hostname, uri.port, use_ssl: true) { |http| http.request(request) }
+    command.concat(['-F', "#{key}=#{value}"])
+  end
 
-    case response.code.to_i
-    when 200
-      return JSON.parse(response.body)
-    when 202
-      sleep([2 + attempt * 2, 10].min)
-      next
-    when 204
-      return []
-    else
-      raise "GET #{path} failed with HTTP #{response.code}: #{response.body.to_s[0, 300]}"
+  stdout, stderr, status = Open3.capture3({ 'GH_TOKEN' => TOKEN }, *command)
+  raise "GitHub GraphQL request failed: #{stderr.strip}" unless status.success?
+
+  payload = JSON.parse(stdout)
+  errors = payload['errors']
+  raise "GitHub GraphQL returned errors: #{errors.to_json}" if errors && !errors.empty?
+
+  payload
+end
+
+
+def user_id(login)
+  query = 'query($login:String!){user(login:$login){id}}'
+  graphql(query, login: login).dig('data', 'user', 'id') || raise("GitHub user #{login.inspect} not found")
+end
+
+
+def visible_repositories(login)
+  if PROFILE_TOKEN.empty?
+    # GITHUB_TOKEN is deliberately repository-scoped. Keep the fallback honest:
+    # it measures authored history in the profile repository only. Supplying a
+    # PROFILE_STATS_TOKEN expands this to every authorized non-fork repository.
+    full_name = ENV.fetch('GITHUB_REPOSITORY', "#{login}/#{login}")
+    return [{ 'nameWithOwner' => full_name, 'isFork' => false, 'isPrivate' => false }]
+  end
+
+  owned_query = <<~GRAPHQL
+    query($login:String!, $cursor:String) {
+      user(login:$login) {
+        repositories(first:100, after:$cursor, ownerAffiliations:OWNER, orderBy:{field:NAME,direction:ASC}) {
+          nodes { nameWithOwner isFork isPrivate defaultBranchRef { name } }
+          pageInfo { hasNextPage endCursor }
+        }
+      }
+    }
+  GRAPHQL
+
+  contributed_query = <<~GRAPHQL
+    query($login:String!, $cursor:String) {
+      user(login:$login) {
+        repositoriesContributedTo(first:100, after:$cursor, contributionTypes:[COMMIT], includeUserRepositories:true, orderBy:{field:NAME,direction:ASC}) {
+          nodes { nameWithOwner isFork isPrivate defaultBranchRef { name } }
+          pageInfo { hasNextPage endCursor }
+        }
+      }
+    }
+  GRAPHQL
+
+  repositories = []
+
+  [[owned_query, 'repositories'], [contributed_query, 'repositoriesContributedTo']].each do |query, key|
+    cursor = nil
+    loop do
+      payload = graphql(query, login: login, cursor: cursor)
+      connection = payload.dig('data', 'user', key)
+      break unless connection
+
+      repositories.concat(connection.fetch('nodes').compact)
+      page = connection.fetch('pageInfo')
+      break unless page.fetch('hasNextPage')
+
+      cursor = page.fetch('endCursor')
     end
   end
 
-  raise "GET #{path} did not become ready after #{attempts} attempts"
+  repositories
+    .reject { |repo| repo['isFork'] }
+    .select { |repo| repo['defaultBranchRef'] }
+    .uniq { |repo| repo.fetch('nameWithOwner') }
+    .sort_by { |repo| repo.fetch('nameWithOwner').downcase }
 end
 
 
-def public_owned_repositories(login)
-  repositories = []
-  page = 1
+def repository_churn(name_with_owner, author_id)
+  owner, name = name_with_owner.split('/', 2)
+  return { additions: 0, deletions: 0, commits: 0 } unless owner && name
+
+  query = <<~GRAPHQL
+    query($owner:String!, $name:String!, $cursor:String, $authorId:ID!) {
+      repository(owner:$owner, name:$name) {
+        defaultBranchRef {
+          target {
+            ... on Commit {
+              history(first:100, after:$cursor, author:{id:$authorId}) {
+                nodes { additions deletions }
+                pageInfo { hasNextPage endCursor }
+              }
+            }
+          }
+        }
+      }
+    }
+  GRAPHQL
+
+  additions = 0
+  deletions = 0
+  commits = 0
+  cursor = nil
 
   loop do
-    batch = github_get("/users/#{login}/repos?type=owner&sort=full_name&direction=asc&per_page=100&page=#{page}")
-    repositories.concat(batch)
-    break if batch.length < 100
+    payload = graphql(query, owner: owner, name: name, cursor: cursor, authorId: author_id)
+    history = payload.dig('data', 'repository', 'defaultBranchRef', 'target', 'history')
+    break unless history
 
-    page += 1
+    history.fetch('nodes').compact.each do |commit|
+      additions += commit.fetch('additions', 0).to_i
+      deletions += commit.fetch('deletions', 0).to_i
+      commits += 1
+    end
+
+    page = history.fetch('pageInfo')
+    break unless page.fetch('hasNextPage')
+
+    cursor = page.fetch('endCursor')
   end
 
-  repositories
-end
-
-
-def authorized_repositories(token)
-  repositories = []
-  page = 1
-
-  loop do
-    batch = github_get(
-      "/user/repos?affiliation=owner,collaborator,organization_member&visibility=all&sort=full_name&direction=asc&per_page=100&page=#{page}",
-      token: token
-    )
-    repositories.concat(batch)
-    break if batch.length < 100
-
-    page += 1
-  end
-
-  repositories
-end
-
-
-def contributor_churn(full_name, login, token: nil)
-  contributors = github_get("/repos/#{full_name}/stats/contributors", token: token)
-  contributor = contributors.find { |item| item.dig('author', 'login').to_s.casecmp(login).zero? }
-  return { additions: 0, deletions: 0, commits: 0 } unless contributor
-
-  weeks = contributor.fetch('weeks', [])
-  {
-    additions: weeks.sum { |week| week.fetch('a', 0).to_i },
-    deletions: weeks.sum { |week| week.fetch('d', 0).to_i },
-    commits: contributor.fetch('total', 0).to_i
-  }
+  { additions: additions, deletions: deletions, commits: commits }
 rescue StandardError => e
-  warn "Skipping #{full_name}: #{e.message}"
+  warn "Skipping #{name_with_owner}: #{e.message}"
   { additions: 0, deletions: 0, commits: 0 }
 end
 
@@ -138,36 +191,20 @@ def render_svg(stats, dark:)
   SVG
 end
 
-if TOKEN.empty?
-  repositories = public_owned_repositories(LOGIN)
-  scope = 'public-owned-default-branch-history'
-  scope_label = 'PUBLIC OWNED GITHUB HISTORY'
-  api_token = nil
-else
-  repositories = authorized_repositories(TOKEN)
-  scope = 'authorized-non-fork-default-branch-history'
-  scope_label = 'AUTHORIZED GITHUB HISTORY'
-  api_token = TOKEN
-end
-
-repositories = repositories
-               .reject { |repo| repo.fetch('fork', false) }
-               .select { |repo| repo['default_branch'] }
-               .uniq { |repo| repo.fetch('full_name') }
-               .sort_by { |repo| repo.fetch('full_name').downcase }
-
+author_id = user_id(LOGIN)
+repositories = visible_repositories(LOGIN)
 stats = {
   additions: 0,
   deletions: 0,
   commits: 0,
   repositories: repositories.length,
-  scope: scope,
-  scope_label: scope_label
+  scope: PROFILE_TOKEN.empty? ? 'profile-repository-default-branch-history' : 'authorized-non-fork-default-branch-history',
+  scope_label: PROFILE_TOKEN.empty? ? 'PUBLIC PROFILE REPOSITORY HISTORY' : 'AUTHORIZED GITHUB HISTORY'
 }
 
 repositories.each do |repository|
-  name = repository.fetch('full_name')
-  churn = contributor_churn(name, LOGIN, token: api_token)
+  name = repository.fetch('nameWithOwner')
+  churn = repository_churn(name, author_id)
   stats[:additions] += churn[:additions]
   stats[:deletions] += churn[:deletions]
   stats[:commits] += churn[:commits]
