@@ -49,6 +49,7 @@ jobs:
 
       - name: Generate lifetime git churn
         env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           PROFILE_STATS_TOKEN: ${{ secrets.PROFILE_STATS_TOKEN }}
         run: |
           ruby scripts/generate_git_churn.rb MathCouple assets/generated
