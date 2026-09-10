@@ -1,175 +1,93 @@
 # frozen_string_literal: true
 
 require 'json'
-require 'open3'
+require 'net/http'
+require 'uri'
 require 'fileutils'
 
 LOGIN = ARGV[0] || 'MathCouple'
 OUTPUT_DIR = ARGV[1] || 'assets/generated'
+TOKEN = ENV.fetch('PROFILE_STATS_TOKEN', '').strip
+API_VERSION = '2026-03-10'
 
 
-def graphql(query, variables = {})
-  command = ['gh', 'api', 'graphql', '-f', "query=#{query}"]
-  variables.each do |key, value|
-    next if value.nil?
+def github_get(path, token: nil, attempts: 5)
+  uri = URI("https://api.github.com#{path}")
+  request = Net::HTTP::Get.new(uri)
+  request['Accept'] = 'application/vnd.github+json'
+  request['X-GitHub-Api-Version'] = API_VERSION
+  request['User-Agent'] = 'MathCouple-profile-stats'
+  request['Authorization'] = "Bearer #{token}" unless token.to_s.empty?
 
-    command.concat(['-F', "#{key}=#{value}"])
+  attempts.times do |attempt|
+    response = Net::HTTP.start(uri.hostname, uri.port, use_ssl: true) { |http| http.request(request) }
+
+    case response.code.to_i
+    when 200
+      return JSON.parse(response.body)
+    when 202
+      sleep([2 + attempt * 2, 10].min)
+      next
+    when 204
+      return []
+    else
+      raise "GET #{path} failed with HTTP #{response.code}: #{response.body.to_s[0, 300]}"
+    end
   end
 
-  stdout, stderr, status = Open3.capture3(*command)
-  raise "GitHub GraphQL request failed: #{stderr.strip}" unless status.success?
-
-  payload = JSON.parse(stdout)
-  errors = payload['errors']
-  raise "GitHub GraphQL returned errors: #{errors.to_json}" if errors && !errors.empty?
-
-  payload
+  raise "GET #{path} did not become ready after #{attempts} attempts"
 end
 
 
-def user_and_owned_repositories(login)
-  query = <<~GRAPHQL
-    query($login: String!, $cursor: String) {
-      user(login: $login) {
-        id
-        repositories(
-          first: 100
-          after: $cursor
-          ownerAffiliations: OWNER
-          privacy: PUBLIC
-          orderBy: {field: NAME, direction: ASC}
-        ) {
-          nodes {
-            nameWithOwner
-            isFork
-            isPrivate
-            defaultBranchRef { name }
-          }
-          pageInfo { hasNextPage endCursor }
-        }
-      }
-    }
-  GRAPHQL
-
+def public_owned_repositories(login)
   repositories = []
-  cursor = nil
-  user_id = nil
+  page = 1
 
   loop do
-    payload = graphql(query, login: login, cursor: cursor)
-    user = payload.dig('data', 'user') || raise("GitHub user #{login.inspect} not found")
-    user_id ||= user.fetch('id')
-    connection = user.fetch('repositories')
-    repositories.concat(connection.fetch('nodes').compact)
-    page = connection.fetch('pageInfo')
-    break unless page.fetch('hasNextPage')
+    batch = github_get("/users/#{login}/repos?type=owner&sort=full_name&direction=asc&per_page=100&page=#{page}")
+    repositories.concat(batch)
+    break if batch.length < 100
 
-    cursor = page.fetch('endCursor')
-  end
-
-  [user_id, repositories]
-end
-
-
-def contributed_repositories(login)
-  query = <<~GRAPHQL
-    query($login: String!, $cursor: String) {
-      user(login: $login) {
-        repositoriesContributedTo(
-          first: 100
-          after: $cursor
-          contributionTypes: [COMMIT]
-          includeUserRepositories: true
-          orderBy: {field: NAME, direction: ASC}
-        ) {
-          nodes {
-            nameWithOwner
-            isFork
-            isPrivate
-            defaultBranchRef { name }
-          }
-          pageInfo { hasNextPage endCursor }
-        }
-      }
-    }
-  GRAPHQL
-
-  repositories = []
-  cursor = nil
-
-  loop do
-    payload = graphql(query, login: login, cursor: cursor)
-    connection = payload.dig('data', 'user', 'repositoriesContributedTo')
-    break unless connection
-
-    repositories.concat(connection.fetch('nodes').compact)
-    page = connection.fetch('pageInfo')
-    break unless page.fetch('hasNextPage')
-
-    cursor = page.fetch('endCursor')
+    page += 1
   end
 
   repositories
 end
 
 
-def repository_churn(name_with_owner, author_id)
-  owner, name = name_with_owner.split('/', 2)
-  return { additions: 0, deletions: 0, commits: 0 } unless owner && name
-
-  query = <<~GRAPHQL
-    query($owner: String!, $name: String!, $cursor: String, $authorId: ID!) {
-      repository(owner: $owner, name: $name) {
-        defaultBranchRef {
-          target {
-            ... on Commit {
-              history(first: 100, after: $cursor, author: {id: $authorId}) {
-                nodes { additions deletions }
-                pageInfo { hasNextPage endCursor }
-              }
-            }
-          }
-        }
-      }
-    }
-  GRAPHQL
-
-  additions = 0
-  deletions = 0
-  commits = 0
-  cursor = nil
+def authorized_repositories(token)
+  repositories = []
+  page = 1
 
   loop do
-    payload = graphql(query, owner: owner, name: name, cursor: cursor, authorId: author_id)
-    history = payload.dig('data', 'repository', 'defaultBranchRef', 'target', 'history')
-    break unless history
+    batch = github_get(
+      "/user/repos?affiliation=owner,collaborator,organization_member&visibility=all&sort=full_name&direction=asc&per_page=100&page=#{page}",
+      token: token
+    )
+    repositories.concat(batch)
+    break if batch.length < 100
 
-    history.fetch('nodes').compact.each do |commit|
-      additions += commit.fetch('additions', 0).to_i
-      deletions += commit.fetch('deletions', 0).to_i
-      commits += 1
-    end
-
-    page = history.fetch('pageInfo')
-    break unless page.fetch('hasNextPage')
-
-    cursor = page.fetch('endCursor')
+    page += 1
   end
 
-  { additions: additions, deletions: deletions, commits: commits }
-rescue StandardError => e
-  warn "Skipping #{name_with_owner}: #{e.message}"
-  { additions: 0, deletions: 0, commits: 0 }
+  repositories
 end
 
 
-def compact_number(value)
-  number = value.to_i
-  return number.to_s if number < 1_000
-  return format('%.1fK', number / 1_000.0).sub('.0K', 'K') if number < 1_000_000
-  return format('%.2fM', number / 1_000_000.0).sub(/\.00M$/, 'M').sub(/0M$/, 'M') if number < 1_000_000_000
+def contributor_churn(full_name, login, token: nil)
+  contributors = github_get("/repos/#{full_name}/stats/contributors", token: token)
+  contributor = contributors.find { |item| item.dig('author', 'login').to_s.casecmp(login).zero? }
+  return { additions: 0, deletions: 0, commits: 0 } unless contributor
 
-  format('%.2fB', number / 1_000_000_000.0).sub(/\.00B$/, 'B').sub(/0B$/, 'B')
+  weeks = contributor.fetch('weeks', [])
+  {
+    additions: weeks.sum { |week| week.fetch('a', 0).to_i },
+    deletions: weeks.sum { |week| week.fetch('d', 0).to_i },
+    commits: contributor.fetch('total', 0).to_i
+  }
+rescue StandardError => e
+  warn "Skipping #{full_name}: #{e.message}"
+  { additions: 0, deletions: 0, commits: 0 }
 end
 
 
@@ -178,57 +96,78 @@ def exact_number(value)
 end
 
 
+def number_font_size(value)
+  length = exact_number(value).length
+  return 27 if length <= 9
+  return 24 if length <= 12
+
+  21
+end
+
+
 def render_svg(stats, dark:)
   bg = dark ? '#0d1117' : '#ffffff'
   border = dark ? '#30363d' : '#d0d7de'
-  text = dark ? '#f0f6fc' : '#24292f'
   muted = dark ? '#8b949e' : '#57606a'
   added = dark ? '#22d3ee' : '#0891b2'
   removed = dark ? '#c084fc' : '#7c3aed'
 
-  added_compact = compact_number(stats.fetch(:additions))
-  removed_compact = compact_number(stats.fetch(:deletions))
   added_exact = exact_number(stats.fetch(:additions))
   removed_exact = exact_number(stats.fetch(:deletions))
   repositories = stats.fetch(:repositories)
   commits = stats.fetch(:commits)
+  scope_label = stats.fetch(:scope_label)
 
   <<~SVG
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 86" width="760" height="86" role="img" aria-labelledby="title desc">
-      <title id="title">Public GitHub lifetime line churn</title>
-      <desc id="desc">#{added_exact} lines added and #{removed_exact} lines removed across #{repositories} public repositories and #{commits} authored commits reachable from their default branches.</desc>
-      <rect x="0.5" y="0.5" width="759" height="85" rx="14" fill="#{bg}" stroke="#{border}" stroke-opacity=".55"/>
-      <line x1="380" y1="17" x2="380" y2="69" stroke="#{border}" stroke-opacity=".55"/>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 88" width="760" height="88" role="img" aria-labelledby="title desc">
+      <title id="title">GitHub authored line churn</title>
+      <desc id="desc">#{added_exact} lines added and #{removed_exact} lines removed across #{repositories} repositories and #{commits} commits attributed to #{LOGIN}.</desc>
+      <rect x="0.5" y="0.5" width="759" height="87" rx="14" fill="#{bg}" stroke="#{border}" stroke-opacity=".55"/>
+      <line x1="380" y1="15" x2="380" y2="70" stroke="#{border}" stroke-opacity=".55"/>
 
       <g font-family="ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, Liberation Mono, monospace">
-        <text x="190" y="27" text-anchor="middle" font-size="11" letter-spacing="1.8" fill="#{muted}">LINES ADDED</text>
-        <text x="190" y="58" text-anchor="middle" font-size="26" font-weight="700" fill="#{added}">+#{added_compact}</text>
+        <text x="190" y="25" text-anchor="middle" font-size="10.5" letter-spacing="1.7" fill="#{muted}">LINES ADDED</text>
+        <text x="190" y="58" text-anchor="middle" font-size="#{number_font_size(stats.fetch(:additions))}" font-weight="700" fill="#{added}">+#{added_exact}</text>
 
-        <text x="570" y="27" text-anchor="middle" font-size="11" letter-spacing="1.8" fill="#{muted}">LINES REMOVED</text>
-        <text x="570" y="58" text-anchor="middle" font-size="26" font-weight="700" fill="#{removed}">−#{removed_compact}</text>
+        <text x="570" y="25" text-anchor="middle" font-size="10.5" letter-spacing="1.7" fill="#{muted}">LINES REMOVED</text>
+        <text x="570" y="58" text-anchor="middle" font-size="#{number_font_size(stats.fetch(:deletions))}" font-weight="700" fill="#{removed}">−#{removed_exact}</text>
 
-        <text x="380" y="78" text-anchor="middle" font-size="8.5" fill="#{muted}">PUBLIC GITHUB HISTORY · #{repositories} REPOS · #{commits} AUTHORED COMMITS</text>
-      </g>
-
-      <g opacity="0">
-        <title>Exact totals: +#{added_exact} / -#{removed_exact}</title>
+        <text x="380" y="79" text-anchor="middle" font-size="8.2" letter-spacing=".45" fill="#{muted}">#{scope_label} · #{repositories} REPOS · #{commits} AUTHORED COMMITS</text>
       </g>
     </svg>
   SVG
 end
 
-user_id, owned = user_and_owned_repositories(LOGIN)
-contributed = contributed_repositories(LOGIN)
-repositories = (owned + contributed)
-               .select { |repo| !repo['isPrivate'] && !repo['isFork'] && repo['defaultBranchRef'] }
-               .uniq { |repo| repo.fetch('nameWithOwner') }
-               .sort_by { |repo| repo.fetch('nameWithOwner').downcase }
+if TOKEN.empty?
+  repositories = public_owned_repositories(LOGIN)
+  scope = 'public-owned-default-branch-history'
+  scope_label = 'PUBLIC OWNED GITHUB HISTORY'
+  api_token = nil
+else
+  repositories = authorized_repositories(TOKEN)
+  scope = 'authorized-non-fork-default-branch-history'
+  scope_label = 'AUTHORIZED GITHUB HISTORY'
+  api_token = TOKEN
+end
 
-stats = { additions: 0, deletions: 0, commits: 0, repositories: repositories.length }
+repositories = repositories
+               .reject { |repo| repo.fetch('fork', false) }
+               .select { |repo| repo['default_branch'] }
+               .uniq { |repo| repo.fetch('full_name') }
+               .sort_by { |repo| repo.fetch('full_name').downcase }
+
+stats = {
+  additions: 0,
+  deletions: 0,
+  commits: 0,
+  repositories: repositories.length,
+  scope: scope,
+  scope_label: scope_label
+}
 
 repositories.each do |repository|
-  name = repository.fetch('nameWithOwner')
-  churn = repository_churn(name, user_id)
+  name = repository.fetch('full_name')
+  churn = contributor_churn(name, LOGIN, token: api_token)
   stats[:additions] += churn[:additions]
   stats[:deletions] += churn[:deletions]
   stats[:commits] += churn[:commits]
@@ -242,7 +181,7 @@ File.write(
   File.join(OUTPUT_DIR, 'git-churn.json'),
   JSON.pretty_generate(
     login: LOGIN,
-    scope: 'public non-fork repositories contributed to by the user; commits reachable from default branches',
+    scope: stats[:scope],
     additions: stats[:additions],
     deletions: stats[:deletions],
     commits: stats[:commits],
