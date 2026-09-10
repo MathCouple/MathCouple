@@ -24,12 +24,6 @@
   <img width="100%" alt="GitHub activity heartbeat writing MALVES" src="https://raw.githubusercontent.com/MathCouple/MathCouple/main/assets/generated/activity-heartbeat.svg" />
 </picture>
 
-<picture>
-  <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/MathCouple/MathCouple/main/assets/generated/git-churn-dark.svg" />
-  <source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/MathCouple/MathCouple/main/assets/generated/git-churn.svg" />
-  <img width="86%" alt="Lifetime public GitHub lines added and removed" src="https://raw.githubusercontent.com/MathCouple/MathCouple/main/assets/generated/git-churn.svg" />
-</picture>
-
 </div>
 
 <details>
