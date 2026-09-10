@@ -1,8 +1,8 @@
 {
   "login": "MathCouple",
-  "scope": "public-owned-default-branch-history",
-  "additions": 0,
-  "deletions": 0,
-  "commits": 0,
+  "scope": "profile-repository-default-branch-history",
+  "additions": 3291,
+  "deletions": 2505,
+  "commits": 68,
   "repositories": 1
 }
