@@ -2243,11 +2243,17 @@
            keyTimes="0;0.8670;0.8850;0.9090;1" dur="10.8s" repeatCount="indefinite"/>
   <animate attributeName="stroke-opacity" values="0;0;0.72;0;0"
            keyTimes="0;0.8670;0.8850;0.9090;1" dur="10.8s" repeatCount="indefinite"/>
-</rect><rect x="742" y="59" width="10" height="10" rx="2" fill="#0e7490" opacity="0.92"
+</rect><rect x="742" y="59" width="10" height="10" rx="2" fill="#67e8f9" opacity="0.92"
       stroke="#22d3ee" stroke-width=".65" stroke-opacity="0">
   <animate attributeName="opacity" values="0.92;0.92;1.00;0.92;0.92"
            keyTimes="0;0.8670;0.8850;0.9090;1" dur="10.8s" repeatCount="indefinite"/>
   <animate attributeName="stroke-opacity" values="0;0;0.72;0;0"
+           keyTimes="0;0.8670;0.8850;0.9090;1" dur="10.8s" repeatCount="indefinite"/>
+</rect><rect x="742" y="72" width="10" height="10" rx="2" fill="#161b22" opacity="0.58"
+      stroke="#22d3ee" stroke-width=".65" stroke-opacity="0">
+  <animate attributeName="opacity" values="0.58;0.58;0.70;0.58;0.58"
+           keyTimes="0;0.8670;0.8850;0.9090;1" dur="10.8s" repeatCount="indefinite"/>
+  <animate attributeName="stroke-opacity" values="0;0;0.28;0;0"
            keyTimes="0;0.8670;0.8850;0.9090;1" dur="10.8s" repeatCount="indefinite"/>
 </rect></g>
 
